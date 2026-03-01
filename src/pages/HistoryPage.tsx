@@ -64,7 +64,7 @@ const handleCancel = async (id: number) => {
   if (!confirmCancel) return;
 
   try {
-    await axios.put(`${import.meta.env.VITE_API_URL}/api/cancel-booking/${id}`);
+    await axios.put("/api/cancel-booking/${id}");
 
     // cập nhật lại UI
     setBookings((prev) =>
