@@ -55,22 +55,12 @@ function ManageBookings() {
   startIndex,
   startIndex + itemsPerPage
 );
-//   useEffect(() => {
-//     const token = localStorage.getItem("token");
-
-//     axios
-//       .get("http://localhost:5000/api/admin/bookings", {
-//         headers: { Authorization: token },
-//       })
-//       .then((res) => setBookings(res.data))
-//       .catch((err) => console.log(err));
-//   }, []);
 
 useEffect(() => {
   const token = localStorage.getItem("token");
 
   axios
-    .get("http://localhost:5000/api/admin/bookings", {
+    .get("https://nmt-mobile-backend.onrender.com/api/admin/bookings", {
       headers: { Authorization: token },
     })
     .then((res) => {
@@ -90,7 +80,7 @@ const handleQuote = async (id: number) => {
 
   try {
     await axios.put(
-      `http://localhost:5000/api/bookings/${id}/quote`,
+      "https://nmt-mobile-backend.onrender.com/api/bookings/${id}/quote",
       {
         repair_price: price,
         admin_note: noteInput[id],
@@ -116,7 +106,7 @@ const handleComplete = async (id: number) => {
 
   try {
     await axios.put(
-      `http://localhost:5000/api/bookings/${id}/complete`
+      `https://nmt-mobile-backend.onrender.com/api/bookings/${id}/complete`
     );
 
     alert("Đã hoàn thành đơn");

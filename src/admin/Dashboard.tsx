@@ -32,9 +32,9 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         const [dashRes, revenueRes, statusRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/admin/dashboard"),
-          axios.get("http://localhost:5000/api/admin/revenue-7days"),
-          axios.get("http://localhost:5000/api/admin/status-summary"),
+          axios.get("https://nmt-mobile-backend.onrender.com/api/admin/dashboard"),
+          axios.get("https://nmt-mobile-backend.onrender.com/api/admin/revenue-7days"),
+          axios.get("https://nmt-mobile-backend.onrender.com/api/admin/status-summary"),
         ]);
 
         setDashboard(dashRes.data);
