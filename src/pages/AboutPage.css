@@ -1,0 +1,46 @@
+.about-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 40px 20px;
+}
+
+.about-card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+}
+
+.about-card h2 {
+  margin-bottom: 25px;
+  font-size: 24px;
+  text-align: center;
+  color: #1e293b;
+}
+
+.about-item {
+  margin-bottom: 18px;
+}
+
+.about-item span {
+  font-weight: 600;
+  color: #2563eb;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.about-item p {
+  margin: 0;
+  color: #475569;
+  font-size: 15px;
+}

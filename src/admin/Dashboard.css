@@ -1,0 +1,90 @@
+/* ===== LAYOUT ===== */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 50px;
+}
+
+/* ===== CARD CHUNG ===== */
+.card {
+  padding: 18px;          /* giảm padding */
+  border-radius: 12px;
+  color: white;
+  min-height: 50px;       /* giảm chiều cao */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h4 {
+  font-size: 14px;        /* nhỏ hơn */
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.card p {
+  font-size: 20px;        /* giảm size số */
+  font-weight: 600;
+}
+/* ===== MÀU CARD ===== */
+.blue {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.orange {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+.purple {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+}
+
+.green {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.dark {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+/* ===== CHART ===== */
+.chart-box {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  grid-column: span 2;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chart canvas fix */
+.chart-box canvas {
+  max-height: 320px !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chart-box {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-box {
+    grid-column: span 1;
+  }
+}

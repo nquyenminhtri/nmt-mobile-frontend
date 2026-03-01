@@ -1,0 +1,146 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  width: 400px;
+}
+
+.title {
+  color: #1a1a1c;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.input:focus {
+  border-color: #667eea;
+  outline: none;
+}
+
+.primary-button {
+  background-color: #667eea;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary-button:hover {
+  background-color: #5563d1;
+}
+
+.success-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.success-button:hover {
+  background-color: #218838;
+}
+
+.result-container {
+  margin-top: 40px;
+  width: 600px;
+}
+
+.booking-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.status {
+  padding: 5px 10px;
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  font-size: 12px;
+}
+.filter-bar {
+   
+  margin: 10px 0;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.filter-bar select,
+.filter-bar input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: none;
+  background-color: #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #bbb;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.active-page {
+  background-color: #667eea !important;
+  color: white;
+}
+.price {
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.waiting-price {
+  color: #f39c12;
+  font-weight: bold;
+}
