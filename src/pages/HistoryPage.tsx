@@ -22,7 +22,7 @@ function HistoryPage() {
   }
 
   try {
-    await axios.post("http://localhost:5000/api/send-otp", { phone });
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/send-otp`, { phone });
     alert("Mã OTP đã được gửi về email");
     setShowOtpInput(true);
 
@@ -48,7 +48,7 @@ useEffect(() => {
 
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/verify-otp",
+      `${import.meta.env.VITE_API_URL}/api/verify-otp`,
       { phone, otp }
     );
 
@@ -64,7 +64,7 @@ const handleCancel = async (id: number) => {
   if (!confirmCancel) return;
 
   try {
-    await axios.put(`http://localhost:5000/api/cancel-booking/${id}`);
+    await axios.put(`${import.meta.env.VITE_API_URL}/api/cancel-booking/${id}`);
 
     // cập nhật lại UI
     setBookings((prev) =>
