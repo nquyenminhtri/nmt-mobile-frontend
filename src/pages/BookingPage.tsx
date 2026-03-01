@@ -36,7 +36,7 @@ function BookingPage() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/bookings", formData);
+      await axios.post("http://nmt-mobile-backend/api/bookings", formData);
       alert("Đặt lịch thành công!");
     } catch (error) {
       console.error(error);
