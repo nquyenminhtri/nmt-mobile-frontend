@@ -22,7 +22,8 @@ function HistoryPage() {
   }
 
   try {
-    await axios.post("https://nmt-mobile-backend.onrender.com/api/send-otp",{phone});
+    const response = await axios.post("https://nmt-mobile-backend.onrender.com/api/send-otp",{phone});
+    console.log("Response từ server:", response.data);
     alert("Mã OTP đã được gửi về email");
     setShowOtpInput(true);
     setCountdown(60); // bắt đầu đếm 60 giây
