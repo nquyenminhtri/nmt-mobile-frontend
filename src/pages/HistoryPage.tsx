@@ -22,10 +22,9 @@ function HistoryPage() {
   }
 
   try {
-    await axios.post("https://nmt-mobile-backend.onrender.com/api/send-otp", { phone });
+    await axios.post("https://nmt-mobile-backend.onrender.com/api/send-otp",phone);
     alert("Mã OTP đã được gửi về email");
     setShowOtpInput(true);
-
     setCountdown(60); // bắt đầu đếm 60 giây
   } catch (error) {
     alert("Không tìm thấy số điện thoại");
@@ -189,16 +188,7 @@ const paginatedBookings = filteredBookings.slice(
             <p><strong>Thiết bị:</strong> {b.device_model}</p>
             <p><strong>Lỗi:</strong> {b.repair_issue}</p>
             <p><strong>Ngày hẹn:</strong> {b.appointment_date}</p>
-            {/* <p>
-            <strong>Giá sửa chữa:</strong>{" "}
-            {b.repair_price ? (
-                <span className="price">
-                {Number(b.repair_price).toLocaleString()} đ
-                </span>
-            ) : (
-                <span className="waiting-price">Chờ báo giá</span>
-            )}
-            </p> */}
+            
             <p>
             <strong>Báo giá:</strong>{" "}
             {b.repair_price
