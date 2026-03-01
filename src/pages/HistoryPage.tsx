@@ -22,7 +22,7 @@ function HistoryPage() {
   }
 
   try {
-    await axios.post(`${import.meta.env.VITE_API_URL}/api/send-otp`, { phone });
+    await axios.post("/api/send-otp", { phone });
     alert("Mã OTP đã được gửi về email");
     setShowOtpInput(true);
 
