@@ -36,7 +36,7 @@ function BookingPage() {
     e.preventDefault();
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/bookings`, formData);
+      await axios.post("https://nmt-mobile-backend.onrender.com/api/bookings", formData);
       alert("Đặt lịch thành công!");
     } catch (error) {
       console.error(error);
