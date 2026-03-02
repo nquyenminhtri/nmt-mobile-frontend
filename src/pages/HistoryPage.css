@@ -149,7 +149,7 @@
 .waiting-price {
   color: #f39c12;
   font-weight: bold;
-
+}
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
   .input-group {
@@ -175,7 +175,7 @@
     flex-direction: column;
     gap: 10px;
   }
-}}
+}
 html, body {
   overflow-x: hidden;
 }
