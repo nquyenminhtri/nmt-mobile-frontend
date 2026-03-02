@@ -1,85 +1,98 @@
-/* ===== GRID LAYOUT ===== */
+/* ===== WRAPPER ===== */
 .dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
 /* ===== CARD ===== */
 .card {
-  border-radius: 18px;
+  border-radius: 16px;
   padding: 20px;
-  color: white;
+  color: #fff;
   min-height: 120px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
 }
 
 .card h4 {
-  font-size: 16px;
-  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  opacity: 0.9;
 }
 
 .card p {
   font-size: 22px;
   font-weight: bold;
+  margin: 0;
 }
 
-/* ===== COLORS ===== */
-.blue { background: linear-gradient(135deg,#2563eb,#3b82f6); }
-.orange { background: linear-gradient(135deg,#f59e0b,#fbbf24); }
-.purple { background: linear-gradient(135deg,#7c3aed,#a855f7); }
-.green { background: linear-gradient(135deg,#16a34a,#22c55e); }
-.dark { background: linear-gradient(135deg,#1e293b,#334155); }
+/* ===== CARD COLORS ===== */
+.blue {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
 
-/* ===== CHART ===== */
+.orange {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+}
+
+.purple {
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+}
+
+.green {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.dark {
+  background: linear-gradient(135deg, #1e293b, #334155);
+}
+
+/* ===== CHART BOX ===== */
 .chart-box {
-  background: white;
-  border-radius: 18px;
-  padding: 20px;
   grid-column: span 2;
-  height: 300px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+  height: 350px;
+  position: relative;
 }
 
 /* ===== RESPONSIVE ===== */
-
-/* Tablet */
 @media (max-width: 1024px) {
-  .dashboard-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .chart-box {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   .dashboard-grid {
-    grid-template-columns: 1fr;
     padding: 15px;
   }
 
   .card {
     min-height: 100px;
-    padding: 18px;
-  }
-
-  .card h4 {
-    font-size: 14px;
   }
 
   .card p {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .chart-box {
-    grid-column: span 1;
-    height: 250px;
+    height: 300px;
   }
 }
