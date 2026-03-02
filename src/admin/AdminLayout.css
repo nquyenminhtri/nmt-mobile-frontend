@@ -85,6 +85,7 @@
 
 /* ===== NOTIFICATION ===== */
 .notification {
+  margin-right: 100px;
   position: relative;
   cursor: pointer;
 }
