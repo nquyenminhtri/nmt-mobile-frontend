@@ -1,14 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation
+} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ContactFloat from "./components/ContactFloat";
+
 import HomePage from "./pages/HomePage";
 import BookingPage from "./pages/BookingPage";
 import AboutPage from "./pages/AboutPage";
 import HistoryPage from "./pages/HistoryPage";
-import Footer from "./components/Footer";
-import ContactFloat from "./components/ContactFloat";
 import LoginPage from "./pages/LoginPage";
-import AdminPage from "./pages/AdminPage";
 
 import AdminLayout from "./admin/AdminLayout";
 import Dashboard from "./admin/Dashboard";
@@ -16,32 +21,47 @@ import ManageBookings from "./admin/ManageBookings";
 import ManageStaff from "./admin/ManageStaff";
 import ProtectedRoute from "./ProtectedRoute";
 
-function App() {
+function Layout() {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
+
   return (
-    <BrowserRouter>
-      <Navbar />
+    <>
+      {!isAdmin && <Navbar />}
+
       <Routes>
+        {/* ADMIN */}
         <Route
-  path="/admin"
-  element={
-    <ProtectedRoute>
-      <AdminLayout />
-    </ProtectedRoute>
-  }
->
-  <Route index element={<Dashboard />} />
-  <Route path="bookings" element={<ManageBookings />} />
-  <Route path="staff" element={<ManageStaff />} />
-</Route>
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Dashboard />} />
+          <Route path="bookings" element={<ManageBookings />} />
+          <Route path="staff" element={<ManageStaff />} />
+        </Route>
+
+        {/* CUSTOMER */}
         <Route path="/" element={<HomePage />} />
         <Route path="/booking" element={<BookingPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/admin" element={<AdminPage />} />
       </Routes>
-      <Footer />
-      <ContactFloat />
+
+      {!isAdmin && <Footer />}
+      {!isAdmin && <ContactFloat />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Layout />
     </BrowserRouter>
   );
 }
