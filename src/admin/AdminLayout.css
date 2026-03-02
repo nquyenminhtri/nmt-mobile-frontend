@@ -3,7 +3,7 @@
   background: #f1f5f9;
 }
 
-/* ===== NAVBAR ===== */
+/* ===== TOP NAVBAR ===== */
 .admin-navbar {
   position: fixed;
   top: 0;
@@ -42,17 +42,17 @@
   padding: 85px 20px 30px;
 }
 
-/* ===== MOBILE MENU ===== */
+/* ===== MOBILE SLIDE MENU ===== */
 .mobile-menu {
   position: fixed;
   top: 65px;
-  left: -250px;
-  width: 250px;
+  left: -260px;
+  width: 260px;
   height: calc(100% - 65px);
   background: #1e293b;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 25px;
   gap: 20px;
   transition: 0.3s ease;
   z-index: 1001;
@@ -65,6 +65,7 @@
 
 .mobile-menu a.active {
   color: #3b82f6;
+  font-weight: bold;
 }
 
 .mobile-menu.active {
@@ -104,7 +105,7 @@
   right: 0;
   top: 30px;
   background: white;
-  width: 220px;
+  width: 230px;
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   padding: 10px;
@@ -116,11 +117,15 @@
   border-bottom: 1px solid #eee;
 }
 
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
 .logout-btn {
   background: #ef4444;
   border: none;
   color: white;
-  padding: 6px 12px;
+  padding: 8px;
   border-radius: 6px;
   cursor: pointer;
 }

@@ -34,8 +34,10 @@ function AdminLayout() {
   return (
     <div className="admin-wrapper">
 
-      {/* ===== TOP BAR ===== */}
+      {/* ===== TOP NAVBAR ===== */}
       <div className="admin-navbar">
+
+        {/* LEFT */}
         <div className="left-section">
           <button
             className="menu-btn"
@@ -46,14 +48,19 @@ function AdminLayout() {
           <h2>NMT Admin</h2>
         </div>
 
+        {/* RIGHT */}
         <div className="right-section">
+
           <div
             className="notification"
             onClick={() => setShowDropdown(!showDropdown)}
           >
             <FaBell size={18} />
+
             {notifications.length > 0 && (
-              <span className="badge">{notifications.length}</span>
+              <span className="badge">
+                {notifications.length}
+              </span>
             )}
 
             {showDropdown && (
@@ -70,34 +77,39 @@ function AdminLayout() {
               </div>
             )}
           </div>
+
         </div>
       </div>
 
-      {/* ===== SLIDE MENU ===== */}
+      {/* ===== MOBILE MENU ===== */}
       <div className={`mobile-menu ${openMenu ? "active" : ""}`}>
         <NavLink to="/admin" end onClick={() => setOpenMenu(false)}>
           Dashboard
         </NavLink>
+
         <NavLink to="/admin/bookings" onClick={() => setOpenMenu(false)}>
           Quản lý đơn
         </NavLink>
+
         <NavLink to="/admin/staff" onClick={() => setOpenMenu(false)}>
           Nhân viên
         </NavLink>
+
         <button className="logout-btn" onClick={handleLogout}>
           Đăng xuất
         </button>
       </div>
 
-      {/* ===== OVERLAY ===== */}
+      {/* Overlay */}
       {openMenu && (
-        <div className="overlay" onClick={() => setOpenMenu(false)}></div>
+        <div className="overlay" onClick={() => setOpenMenu(false)} />
       )}
 
       {/* ===== CONTENT ===== */}
       <div className="admin-content">
         <Outlet />
       </div>
+
     </div>
   );
 }
