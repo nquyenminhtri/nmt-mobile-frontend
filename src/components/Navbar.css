@@ -1,15 +1,19 @@
 /* ===== NAVBAR ===== */
 .navbar {
-  height: 70px;
   background: linear-gradient(90deg, #1e293b, #0f172a);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 0 40px;
   border-bottom: 2px solid #e5e7eb;
 }
 
-/* ===== LOGO ===== */
+/* Top section */
+.nav-top {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
 .logo {
   color: white;
   font-size: 24px;
@@ -17,12 +21,13 @@
   letter-spacing: 1px;
 }
 
-/* ===== MENU ===== */
+/* Menu desktop */
 .menu {
   display: flex;
   gap: 35px;
 }
 
+/* Links */
 .menu a {
   color: #e2e8f0;
   text-decoration: none;
@@ -31,7 +36,7 @@
   transition: 0.3s ease;
 }
 
-/* Hover underline animation */
+/* Hover underline */
 .menu a::after {
   content: "";
   position: absolute;
@@ -51,7 +56,7 @@
   width: 100%;
 }
 
-/* Active link */
+/* Active */
 .menu a.active {
   color: white;
   font-weight: 500;
@@ -60,15 +65,41 @@
 .menu a.active::after {
   width: 100%;
 }
+
+/* Hamburger hidden desktop */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
   .navbar {
-    padding: 10px 20px;
+    padding: 0 20px;
   }
 
-  .nav-links {
+  .menu {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    display: none;
+    padding-bottom: 20px;
+  }
+
+  .menu.active {
     display: flex;
-  flex-wrap: wrap;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .menu a {
+    font-size: 14px;
   }
 }
