@@ -1,0 +1,86 @@
+/* ===== WRAPPER ===== */
+.manage-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+.manage-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ===== TITLE ===== */
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ===== TABLE WRAPPER ===== */
+.table-wrapper {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== TABLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #1e293b;
+  color: #fff;
+}
+
+th {
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+
+td {
+  padding: 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* ===== ROLE BADGE ===== */
+.role-admin {
+  background: #ef4444;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.role-staff {
+  background: #2563eb;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    font-size: 12px;
+  }
+}
