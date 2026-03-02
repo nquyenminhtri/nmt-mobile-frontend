@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-top">
-        <h2 className="logo">NMTri Repair</h2>
+        <h2 className="logo">NMT Fix</h2>
 
         <div
           className="hamburger"

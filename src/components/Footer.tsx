@@ -6,7 +6,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-col">
-          <h3>NMTri Repair</h3>
+          <h3>NMT Fix</h3>
           <p>Chuyên sửa chữa điện thoại uy tín - chuyên nghiệp.</p>
         </div>
 
@@ -27,7 +27,7 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
-        © {new Date().getFullYear()} Bản quyền thuộc NMTri Repair.
+        © {new Date().getFullYear()} Bản quyền thuộc NMT Fix.
       </div>
     </footer>
   );
