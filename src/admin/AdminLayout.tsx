@@ -31,21 +31,18 @@ function AdminLayout() {
   };
 
   return (
-    <div className="admin-container">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <h2>NMT Admin</h2>
-        <NavLink to="/admin" end>Dashboard</NavLink>
-        <NavLink to="/admin/bookings">Quản lý đơn</NavLink>
-        <NavLink to="/admin/staff">Nhân viên</NavLink>
-        <button className="logout-btn" onClick={handleLogout}>
-          Đăng xuất
-        </button>
-      </div>
+    <div className="admin-wrapper">
 
-      {/* Main content */}
-      <div className="main">
-        <div className="admin-topbar">
+      {/* TOP ADMIN BAR */}
+      <div className="admin-navbar">
+        <div className="admin-left">
+          <h2>NMT Admin</h2>
+          <NavLink to="/admin" end>Dashboard</NavLink>
+          <NavLink to="/admin/bookings">Quản lý đơn</NavLink>
+          <NavLink to="/admin/staff">Nhân viên</NavLink>
+        </div>
+
+        <div className="admin-right">
           <div
             className="notification"
             onClick={() => setShowDropdown(!showDropdown)}
@@ -69,12 +66,18 @@ function AdminLayout() {
               </div>
             )}
           </div>
-        </div>
 
-        <div className="content">
-          <Outlet />
+          <button className="logout-btn" onClick={handleLogout}>
+            Đăng xuất
+          </button>
         </div>
       </div>
+
+      {/* CONTENT */}
+      <div className="admin-content">
+        <Outlet />
+      </div>
+
     </div>
   );
 }
