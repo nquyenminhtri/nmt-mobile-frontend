@@ -142,6 +142,18 @@ const paginatedBookings = filteredBookings.slice(
   startIndex,
   startIndex + itemsPerPage
 );
+const getStatusClass = (status: string) => {
+  switch (status) {
+    case "Chờ Xác Nhận":
+      return "status-pending";
+    case "Đang Sửa":
+      return "status-repairing";
+    case "Hoàn Thành":
+      return "status-completed";
+    default:
+      return "";
+  }
+};
  return (
   <div className="page">
     {isVerified && (
@@ -217,8 +229,9 @@ const paginatedBookings = filteredBookings.slice(
         {paginatedBookings.map((b) => (
           <div key={b.id} className="booking-card">
             <div className="row">
-              
-              <span className="status">{b.status}</span>
+             <span className={`status ${getStatusClass(b.status)}`}>
+                {b.status}
+              </span>
             </div>
             <p><strong>Tên:</strong> {b.customer_name}</p>
 

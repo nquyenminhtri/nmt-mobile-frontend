@@ -193,3 +193,26 @@ html, body {
     padding: 15px;
   }
 }
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Chờ xác nhận - cam */
+.status-pending {
+  background-color: #f39c12;
+}
+
+/* Đang sửa - xanh lá */
+.status-repairing {
+  background-color: #2ecc71;
+}
+
+/* Hoàn thành - xanh dương */
+.status-completed {
+  background-color: #3498db;
+}
