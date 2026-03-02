@@ -14,28 +14,55 @@ function HistoryPage() {
   const [otp, setOtp] = useState("");
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [bookings, setBookings] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
 
- const handleSendOTP = async () => {
+//  const handleSendOTP = async () => {
+//   if (!phone) {
+//     alert("Vui lòng nhập số điện thoại");
+//     return;
+//   }
+
+//   try {
+//     const response = await axios.post("https://nmt-mobile-backend.onrender.com/api/send-otp",{phone});
+//     console.log("Response từ server:", response.data);
+//     alert("Mã OTP đã được gửi về email");
+//     setShowOtpInput(true);
+//     setCountdown(60); // bắt đầu đếm 60 giây
+//   } catch (error: any) {
+//   if (error.response?.status === 404) {
+//     alert("Không tìm thấy số điện thoại");
+//   } else if (error.response?.status === 500) {
+//     alert("Lỗi hệ thống, vui lòng thử lại sau");
+//   } else {
+//     alert("Có lỗi xảy ra");
+//   }
+// }
+// };
+const handleSendOTP = async () => {
   if (!phone) {
     alert("Vui lòng nhập số điện thoại");
     return;
   }
 
   try {
-    const response = await axios.post("https://nmt-mobile-backend.onrender.com/api/send-otp",{phone});
-    console.log("Response từ server:", response.data);
-    alert("Mã OTP đã được gửi về email");
+    setLoading(true);
+
+    await axios.post(
+      "https://nmt-mobile-backend.onrender.com/api/send-otp",
+      { phone }
+    );
+
     setShowOtpInput(true);
-    setCountdown(60); // bắt đầu đếm 60 giây
+    setCountdown(60);
   } catch (error: any) {
-  if (error.response?.status === 404) {
-    alert("Không tìm thấy số điện thoại");
-  } else if (error.response?.status === 500) {
-    alert("Lỗi hệ thống, vui lòng thử lại sau");
-  } else {
-    alert("Có lỗi xảy ra");
+    if (error.response?.status === 404) {
+      alert("Không tìm thấy số điện thoại");
+    } else {
+      alert("Lỗi hệ thống, vui lòng thử lại sau");
+    }
+  } finally {
+    setLoading(false);
   }
-}
 };
 useEffect(() => {
   if (countdown === 0) return;
@@ -156,12 +183,16 @@ const paginatedBookings = filteredBookings.slice(
           onChange={(e) => setPhone(e.target.value)}
         />
         <button
-  className="primary-button"
-  onClick={handleSendOTP}
-  disabled={countdown > 0}
->
-  {countdown > 0 ? `Gửi lại sau ${countdown}s` : "Lấy mã xác nhận"}
-</button>
+          className="primary-button"
+          onClick={handleSendOTP}
+          disabled={countdown > 0 || loading}
+        >
+          {loading
+            ? "Đang gửi mã..."
+            : countdown > 0
+            ? `Gửi lại sau ${countdown}s`
+            : "Lấy mã xác nhận"}
+        </button>
       </div>
 
       {showOtpInput && (
