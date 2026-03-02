@@ -120,17 +120,28 @@ function Dashboard() {
       </div>
 
       <div className="chart-box">
-        <Line 
-  data={lineChartData}
-  options={{
-    responsive: true,
-    maintainAspectRatio: false,
-  }}
-/>
+        <Line
+          data={lineChartData}
+          options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }}
+        />
       </div>
 
       <div className="chart-box">
-        <Pie data={pieData} />
+        <Pie
+          data={pieData}
+          options={{
+            responsive: true,
+            maintainAspectRatio: false
+          }}
+        />
       </div>
     </div>
   );
