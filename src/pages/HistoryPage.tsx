@@ -27,9 +27,15 @@ function HistoryPage() {
     alert("Mã OTP đã được gửi về email");
     setShowOtpInput(true);
     setCountdown(60); // bắt đầu đếm 60 giây
-  } catch (error) {
+  } catch (error: any) {
+  if (error.response?.status === 404) {
     alert("Không tìm thấy số điện thoại");
+  } else if (error.response?.status === 500) {
+    alert("Lỗi hệ thống, vui lòng thử lại sau");
+  } else {
+    alert("Có lỗi xảy ra");
   }
+}
 };
 useEffect(() => {
   if (countdown === 0) return;
