@@ -1,4 +1,6 @@
 .footer {
+  display: flex;
+  justify-content: space-between;
   background-color: #0f172a;
   color: white;
   margin-top: 50px;
@@ -38,4 +40,11 @@
   padding: 15px;
   background-color: #020617;
   font-size: 14px;
+}
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
 }

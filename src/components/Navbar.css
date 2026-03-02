@@ -60,3 +60,15 @@
 .menu a.active::after {
   width: 100%;
 }
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    display: flex;
+  flex-wrap: wrap;
+  }
+}
