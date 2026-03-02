@@ -6,7 +6,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-col">
-          <h3>NMT Mobile</h3>
+          <h3>NMTri Repair</h3>
           <p>Chuyên sửa chữa điện thoại uy tín - chuyên nghiệp.</p>
         </div>
 
