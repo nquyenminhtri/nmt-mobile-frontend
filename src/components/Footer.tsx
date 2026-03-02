@@ -27,7 +27,7 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
-        © {new Date().getFullYear()} Bản quyền thuộc NMT Mobile.
+        © {new Date().getFullYear()} Bản quyền thuộc NMTri Repair.
       </div>
     </footer>
   );
