@@ -12,6 +12,7 @@
 
 /* ===== CARD ===== */
 .card {
+  max-width: 275px;
   border-radius: 16px;
   padding: 20px;
   color: #fff;
