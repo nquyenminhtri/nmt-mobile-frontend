@@ -11,8 +11,9 @@
   background: #fff;
   padding: 10px;
   border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  width: 400px;
+  box-shadow: 0 15px 40px rgba(3, 2, 2, 0.15);
+  width: 100%;
+  max-width: 400px;
 }
 
 .title {
@@ -70,7 +71,8 @@
 
 .result-container {
   margin-top: 40px;
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
 }
 
 .booking-card {
@@ -143,4 +145,33 @@
 .waiting-price {
   color: #f39c12;
   font-weight: bold;
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .input-group {
+    flex-direction: column;
+  }
+
+  .input {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .primary-button,
+  .success-button {
+    width: 100%;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+}}
+html, body {
+  overflow-x: hidden;
 }
