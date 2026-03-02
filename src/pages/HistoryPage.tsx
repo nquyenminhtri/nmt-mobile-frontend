@@ -217,9 +217,10 @@ const paginatedBookings = filteredBookings.slice(
         {paginatedBookings.map((b) => (
           <div key={b.id} className="booking-card">
             <div className="row">
-              <span><strong>Tên:</strong> {b.customer_name}</span>
+              
               <span className="status">{b.status}</span>
             </div>
+            <p><strong>Tên:</strong> {b.customer_name}</p>
 
             <p><strong>SĐT:</strong> {b.phone_number}</p>
             <p><strong>Email:</strong> {b.email}</p>
