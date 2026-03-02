@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaBars } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./AdminLayout.css";
@@ -7,6 +7,7 @@ import "./AdminLayout.css";
 function AdminLayout() {
   const [notifications, setNotifications] = useState<any[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const fetchNotifications = async () => {
     try {
@@ -33,16 +34,19 @@ function AdminLayout() {
   return (
     <div className="admin-wrapper">
 
-      {/* TOP ADMIN BAR */}
+      {/* ===== TOP BAR ===== */}
       <div className="admin-navbar">
-        <div className="admin-left">
+        <div className="left-section">
+          <button
+            className="menu-btn"
+            onClick={() => setOpenMenu(!openMenu)}
+          >
+            <FaBars />
+          </button>
           <h2>NMT Admin</h2>
-          <NavLink to="/admin" end>Dashboard</NavLink>
-          <NavLink to="/admin/bookings">Quản lý đơn</NavLink>
-          <NavLink to="/admin/staff">Nhân viên</NavLink>
         </div>
 
-        <div className="admin-right">
+        <div className="right-section">
           <div
             className="notification"
             onClick={() => setShowDropdown(!showDropdown)}
@@ -66,18 +70,34 @@ function AdminLayout() {
               </div>
             )}
           </div>
-
-          <button className="logout-btn" onClick={handleLogout}>
-            Đăng xuất
-          </button>
         </div>
       </div>
 
-      {/* CONTENT */}
+      {/* ===== SLIDE MENU ===== */}
+      <div className={`mobile-menu ${openMenu ? "active" : ""}`}>
+        <NavLink to="/admin" end onClick={() => setOpenMenu(false)}>
+          Dashboard
+        </NavLink>
+        <NavLink to="/admin/bookings" onClick={() => setOpenMenu(false)}>
+          Quản lý đơn
+        </NavLink>
+        <NavLink to="/admin/staff" onClick={() => setOpenMenu(false)}>
+          Nhân viên
+        </NavLink>
+        <button className="logout-btn" onClick={handleLogout}>
+          Đăng xuất
+        </button>
+      </div>
+
+      {/* ===== OVERLAY ===== */}
+      {openMenu && (
+        <div className="overlay" onClick={() => setOpenMenu(false)}></div>
+      )}
+
+      {/* ===== CONTENT ===== */}
       <div className="admin-content">
         <Outlet />
       </div>
-
     </div>
   );
 }

@@ -1,10 +1,9 @@
-/* ===== WRAPPER ===== */
 .admin-wrapper {
   min-height: 100vh;
   background: #f1f5f9;
 }
 
-/* ===== TOP NAVBAR ===== */
+/* ===== NAVBAR ===== */
 .admin-navbar {
   position: fixed;
   top: 0;
@@ -15,46 +14,75 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 20px;
   color: white;
   z-index: 1000;
 }
 
-/* LEFT MENU */
-.admin-left {
+.left-section {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 15px;
 }
 
-.admin-left h2 {
-  margin-right: 20px;
+.menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-.admin-left a {
-  color: #e2e8f0;
-  text-decoration: none;
-  transition: 0.3s;
+.right-section {
+  position: relative;
 }
 
-.admin-left a.active {
-  color: #3b82f6;
-  font-weight: bold;
-}
-
-/* RIGHT SECTION */
-.admin-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* CONTENT */
+/* ===== CONTENT ===== */
 .admin-content {
-  padding: 90px 30px 30px;
+  padding: 85px 20px 30px;
 }
 
-/* NOTIFICATION */
+/* ===== MOBILE MENU ===== */
+.mobile-menu {
+  position: fixed;
+  top: 65px;
+  left: -250px;
+  width: 250px;
+  height: calc(100% - 65px);
+  background: #1e293b;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  transition: 0.3s ease;
+  z-index: 1001;
+}
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.mobile-menu a.active {
+  color: #3b82f6;
+}
+
+.mobile-menu.active {
+  left: 0;
+}
+
+/* ===== OVERLAY ===== */
+.overlay {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 65px);
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+}
+
+/* ===== NOTIFICATION ===== */
 .notification {
   position: relative;
   cursor: pointer;
@@ -74,7 +102,7 @@
 .dropdown {
   position: absolute;
   right: 0;
-  top: 35px;
+  top: 30px;
   background: white;
   width: 220px;
   border-radius: 8px;
@@ -88,11 +116,6 @@
   border-bottom: 1px solid #eee;
 }
 
-.dropdown-item:last-child {
-  border-bottom: none;
-}
-
-/* LOGOUT */
 .logout-btn {
   background: #ef4444;
   border: none;
@@ -100,24 +123,4 @@
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-
-  .admin-left {
-    gap: 12px;
-  }
-
-  .admin-left h2 {
-    font-size: 16px;
-  }
-
-  .admin-left a {
-    font-size: 14px;
-  }
-
-  .admin-content {
-    padding: 85px 15px 20px;
-  }
 }
