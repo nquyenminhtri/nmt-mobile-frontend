@@ -122,8 +122,11 @@ const handleComplete = async (id: number) => {
 };
 
   return (
-    <div>
-      <h2>Lịch sử đặt lịch</h2>
+  <div className="manage-wrapper">
+    <div className="manage-container">
+      <h2 className="page-title">Lịch sử đặt lịch</h2>
+
+      {/* Filter */}
       <div className="filter-bar">
         {/* 🔎 Tìm kiếm */}
         <input
@@ -293,6 +296,7 @@ const handleComplete = async (id: number) => {
         </button>
         </div>
     </div>
+        </div>
   );
 }
 
