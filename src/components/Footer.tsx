@@ -13,7 +13,7 @@ function Footer() {
         <div className="footer-col">
           <h4>Liên hệ</h4>
           <p>📍 Ấp 10, Xã Mỹ Lệ, Tỉnh Tây Ninh</p>
-          <p>📞 0867646120</p>
+          <p>📞 0396369573</p>
           <p>🕒 8:00 - 21:00</p>
         </div>
 
