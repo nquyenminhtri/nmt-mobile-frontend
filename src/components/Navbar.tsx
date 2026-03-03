@@ -48,7 +48,12 @@ function Navbar() {
         <NavLink to="/booking" onClick={closeMenu}>
           Đặt lịch
         </NavLink>
-        
+        <NavLink to="/history" onClick={closeMenu}>
+          Lịch sử
+        </NavLink>
+        <NavLink to="/about" onClick={closeMenu}>
+          Thông tin
+        </NavLink>
       </div>
 
       {/* Overlay */}
