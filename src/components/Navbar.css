@@ -69,6 +69,7 @@ body {
 .mobile-menu {
   position: fixed;
   top: 65px;
+  left: -291px;
   width: 240px;
   height: calc(100% - 65px);
   background: #1e293b;
