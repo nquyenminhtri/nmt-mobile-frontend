@@ -16,28 +16,6 @@ function HistoryPage() {
   const [bookings, setBookings] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
-//  const handleSendOTP = async () => {
-//   if (!phone) {
-//     alert("Vui lòng nhập số điện thoại");
-//     return;
-//   }
-
-//   try {
-//     const response = await axios.post("https://nmt-mobile-backend.onrender.com/api/send-otp",{phone});
-//     console.log("Response từ server:", response.data);
-//     alert("Mã OTP đã được gửi về email");
-//     setShowOtpInput(true);
-//     setCountdown(60); // bắt đầu đếm 60 giây
-//   } catch (error: any) {
-//   if (error.response?.status === 404) {
-//     alert("Không tìm thấy số điện thoại");
-//   } else if (error.response?.status === 500) {
-//     alert("Lỗi hệ thống, vui lòng thử lại sau");
-//   } else {
-//     alert("Có lỗi xảy ra");
-//   }
-// }
-// };
 const handleSendOTP = async () => {
   if (!phone) {
     alert("Vui lòng nhập số điện thoại");
@@ -190,7 +168,7 @@ const getStatusClass = (status: string) => {
       <div className="input-group">
         <input
           className="input"
-          placeholder="Nhập số điện thoại"
+          placeholder="Nhập số điện thoại hoặc email"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
