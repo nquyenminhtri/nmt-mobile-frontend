@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import "./BookingPage.css";
 
@@ -19,7 +20,43 @@ function BookingPage() {
     repair_issue: "",
     appointment_date: getCurrentDateTime(),
   });
+  const [otp, setOtp] = useState("");
+  const [showOtpInput, setShowOtpInput] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+  const [countdown, setCountdown] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const handleSendOTP = async () => {
+  if (!formData.email) {
+    alert("Vui lòng nhập email trước");
+    return;
+  }
 
+  try {
+    setLoading(true);
+
+    await axios.post(
+      "https://nmt-mobile-backend.onrender.com/api/send-booking-otp",
+      { email: formData.email }
+    );
+
+    alert("Mã OTP đã gửi về email");
+    setShowOtpInput(true);
+    setCountdown(60);
+  } catch (error) {
+    alert("Không gửi được OTP");
+  } finally {
+    setLoading(false);
+  }
+};
+useEffect(() => {
+  if (countdown === 0) return;
+
+  const timer = setInterval(() => {
+    setCountdown((prev) => prev - 1);
+  }, 1000);
+
+  return () => clearInterval(timer);
+}, [countdown]);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -29,20 +66,43 @@ function BookingPage() {
       [name]: value,
     }));
   };
+  const handleVerifyOTP = async () => {
+  try {
+    await axios.post(
+      "https://nmt-mobile-backend.onrender.com/api/verify-booking-otp",
+      {
+        email: formData.email,
+        otp,
+      }
+    );
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
+    alert("Xác thực thành công!");
+    setIsVerified(true);
+  } catch (error) {
+    alert("OTP không đúng");
+  }
+};
+ const handleSubmit = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
+  e.preventDefault();
 
-    try {
-      await axios.post("https://nmt-mobile-backend.onrender.com/api/bookings", formData);
-      alert("Đặt lịch thành công!");
-    } catch (error) {
-      console.error(error);
-      alert("Lỗi khi đặt lịch!");
-    }
-  };
+  if (!isVerified) {
+    alert("Bạn cần xác thực email trước khi đặt lịch");
+    return;
+  }
+
+  try {
+    await axios.post(
+      "https://nmt-mobile-backend.onrender.com/api/bookings",
+      formData
+    );
+
+    alert("Đặt lịch thành công!");
+  } catch (error) {
+    alert("Lỗi khi đặt lịch!");
+  }
+};
 
   return (
     <div className="booking-wrapper">
@@ -80,6 +140,35 @@ function BookingPage() {
             />
           </div>
 
+          <div>
+            <button
+          className="primary-button"
+          onClick={handleSendOTP}
+          disabled={countdown > 0 || loading}
+        >
+          {loading
+            ? "Đang gửi mã..."
+            : countdown > 0
+            ? `Gửi lại sau ${countdown}s`
+            : "Lấy mã xác nhận"}
+        </button>
+      
+      {showOtpInput && (
+        <div className="input-group">
+          <input
+            className="input"
+            placeholder="Nhập mã OTP"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+          />
+          <button className="success-button" onClick={handleVerifyOTP}>
+            Xác nhận
+          </button>
+          
+        </div>
+      )}
+          </div>
+
           <div className="form-group">
             <label>Dòng máy</label>
             <input
@@ -111,8 +200,12 @@ function BookingPage() {
             />
           </div>
 
-          <button type="submit" className="submit-btn">
-            Xác nhận đặt lịch
+          <button
+            type="submit"
+            className="submit-btn"
+            disabled={!isVerified}
+          >
+            {isVerified ? "Xác nhận đặt lịch" : "Chưa xác thực email"}
           </button>
         </form>
       </div>
