@@ -98,12 +98,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     alert("Đặt lịch thành công!");
 
-    // 🔥 RESET TOÀN BỘ TRẠNG THÁI
-    setIsVerified(false);
-    setShowOtpInput(false);
-    setOtp("");
-    setCountdown(0);
-
+    // 🔥 RESET FORM
     setFormData({
       customer_name: "",
       phone_number: "",
@@ -113,11 +108,16 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       appointment_date: getCurrentDateTime(),
     });
 
+    // 🔥 RESET OTP STATE
+    setIsVerified(false);
+    setShowOtpInput(false);
+    setOtp("");
+    setCountdown(0);
+
   } catch (error) {
     alert("Lỗi khi đặt lịch!");
   }
 };
-
   return (
     <div className="booking-wrapper">
       <div className="booking-card">
@@ -128,6 +128,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             <label>Tên khách hàng</label>
             <input
               name="customer_name"
+              value={formData.customer_name}
               placeholder="Nhập tên của bạn"
               onChange={handleChange}
               required
@@ -138,6 +139,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             <label>Số điện thoại</label>
             <input
               name="phone_number"
+              value={formData.phone_number}
               placeholder="Nhập số điện thoại"
               onChange={handleChange}
               required
@@ -148,6 +150,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             <label>Email</label>
             <input
               name="email"
+              value={formData.email}
               placeholder="Nhập email"
               onChange={handleChange}
               required
@@ -192,6 +195,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             <label>Dòng máy</label>
             <input
               name="device_model"
+              value={formData.device_model}
               placeholder="Ví dụ: iPhone 13"
               onChange={handleChange}
               required
@@ -202,6 +206,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             <label>Mô tả yêu cầu</label>
             <textarea
               name="repair_issue"
+              value={formData.repair_issue}
               placeholder="Mô tả tình trạng máy"
               onChange={handleChange}
               required
@@ -214,6 +219,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               type="datetime-local"
               name="appointment_date"
               value={formData.appointment_date}  // ✅ thêm value
+              min={getCurrentDateTime()}
               onChange={handleChange}
               required
             />
