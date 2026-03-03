@@ -10,15 +10,15 @@ function HistoryPage() {
   const [toDate, setToDate] = useState("");
   const [countdown, setCountdown] = useState(0);
   const [isVerified, setIsVerified] = useState(false);
-  const [phone, setPhone] = useState("");
+  const [contact, setContact] = useState("");
   const [otp, setOtp] = useState("");
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [bookings, setBookings] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
 const handleSendOTP = async () => {
-  if (!phone) {
-    alert("Vui lòng nhập số điện thoại");
+  if (!contact) {
+    alert("Vui lòng nhập số điện thoại hoặc email");
     return;
   }
 
@@ -27,14 +27,14 @@ const handleSendOTP = async () => {
 
     await axios.post(
       "https://nmt-mobile-backend.onrender.com/api/send-otp",
-      { phone }
+      { contact }
     );
 
     setShowOtpInput(true);
     setCountdown(60);
   } catch (error: any) {
     if (error.response?.status === 404) {
-      alert("Không tìm thấy số điện thoại");
+      alert("Không tìm thấy thông tin");
     } else {
       alert("Lỗi hệ thống, vui lòng thử lại sau");
     }
@@ -51,7 +51,8 @@ useEffect(() => {
 
   return () => clearInterval(timer);
 }, [countdown])
-  const handleVerifyOTP = async () => {
+
+const handleVerifyOTP = async () => {
   if (!otp) {
     alert("Nhập mã OTP");
     return;
@@ -60,11 +61,11 @@ useEffect(() => {
   try {
     const res = await axios.post(
       "https://nmt-mobile-backend.onrender.com/api/verify-otp",
-      { phone, otp }
+      { contact, otp }
     );
 
     setBookings(res.data);
-    setIsVerified(true); // 👈 Ẩn form sau khi xác nhận thành công
+    setIsVerified(true);
   } catch (error) {
     alert("OTP không đúng");
   }
@@ -169,8 +170,8 @@ const getStatusClass = (status: string) => {
         <input
           className="input"
           placeholder="Nhập số điện thoại hoặc email"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          value={contact}
+          onChange={(e) => setContact(e.target.value)}
         />
         <button
           className="primary-button"
