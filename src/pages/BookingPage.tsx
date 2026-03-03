@@ -156,6 +156,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
           <div>
             <button
+            type="button"
           className="primary-button"
           onClick={handleSendOTP}
           disabled={countdown > 0 || loading}
@@ -175,7 +176,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
           />
-          <button className="success-button" onClick={handleVerifyOTP}>
+          <button
+            type="button"
+            className="success-button"
+            onClick={handleVerifyOTP}
+          >
             Xác nhận
           </button>
           
