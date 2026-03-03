@@ -82,8 +82,19 @@ useEffect(() => {
     alert("OTP không đúng");
   }
 };
+
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
+
+  if (!isValidPhone(formData.phone_number)) {
+    alert("Số điện thoại không hợp lệ");
+    return;
+  }
+
+  if (!isValidEmail(formData.email)) {
+    alert("Email không hợp lệ");
+    return;
+  }
 
   if (!isVerified) {
     alert("Bạn cần xác thực email trước khi đặt lịch");
@@ -98,7 +109,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     alert("Đặt lịch thành công!");
 
-    // 🔥 RESET FORM
+    // Reset form
     setFormData({
       customer_name: "",
       phone_number: "",
@@ -108,7 +119,6 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       appointment_date: getCurrentDateTime(),
     });
 
-    // 🔥 RESET OTP STATE
     setIsVerified(false);
     setShowOtpInput(false);
     setOtp("");
@@ -117,6 +127,13 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   } catch (error) {
     alert("Lỗi khi đặt lịch!");
   }
+};
+const isValidPhone = (phone: string) => {
+  return /^(0[0-9]{8,10})$/.test(phone);
+};
+
+const isValidEmail = (email: string) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
   return (
     <div className="booking-wrapper">
@@ -141,7 +158,16 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               name="phone_number"
               value={formData.phone_number}
               placeholder="Nhập số điện thoại"
-              onChange={handleChange}
+              inputMode="numeric"
+              pattern="[0-9]{9,11}"
+              maxLength={11}
+              onChange={(e) => {
+                const onlyNumbers = e.target.value.replace(/\D/g, "");
+                setFormData((prev) => ({
+                  ...prev,
+                  phone_number: onlyNumbers,
+                }));
+              }}
               required
             />
           </div>
