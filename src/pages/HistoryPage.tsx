@@ -76,7 +76,7 @@ const handleCancel = async (id: number) => {
   if (!confirmCancel) return;
 
   try {
-    await axios.put("https://nmt-mobile-backend.onrender.com/api/cancel-booking/${id}");
+    await axios.put(`https://nmt-mobile-backend.onrender.com/api/cancel-booking/${id}`);
 
     // cập nhật lại UI
     setBookings((prev) =>

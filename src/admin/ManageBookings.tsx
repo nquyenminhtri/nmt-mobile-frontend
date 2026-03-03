@@ -60,7 +60,7 @@ useEffect(() => {
   const token = localStorage.getItem("token");
 
   axios
-    .get("https://nmt-mobile-backend.onrender.com/api/admin/bookings", {
+    .get(`https://nmt-mobile-backend.onrender.com/api/admin/bookings`, {
       headers: { Authorization: token },
     })
     .then((res) => {
@@ -80,7 +80,7 @@ const handleQuote = async (id: number) => {
 
   try {
     await axios.put(
-      "https://nmt-mobile-backend.onrender.com/api/bookings/${id}/quote",
+      `https://nmt-mobile-backend.onrender.com/api/bookings/${id}/quote`,
       {
         repair_price: price,
         admin_note: noteInput[id],

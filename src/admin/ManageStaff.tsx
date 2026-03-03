@@ -8,7 +8,7 @@ function ManageStaff() {
     const token = localStorage.getItem("token");
 
     axios
-      .get("https://nmt-mobile-backend.onrender.com/api/admin/users", {
+      .get(`https://nmt-mobile-backend.onrender.com/api/admin/users`, {
         headers: { Authorization: token },
       })
       .then((res) => {
