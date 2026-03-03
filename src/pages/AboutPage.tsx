@@ -1,11 +1,9 @@
-import banner from "../assets/banner.png";
 import "./AboutPage.css";
 
 function AboutPage() {
   return (
     <div
       className="about-container"
-      style={{ backgroundImage: `url(${banner})` }}
     >
       <div className="about-overlay">
         <div className="about-card">
