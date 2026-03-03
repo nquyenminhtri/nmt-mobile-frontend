@@ -158,7 +158,6 @@ const handleComplete = async (id: number) => {
             setCurrentPage(1);
             }}
         />
-
         {/* 📌 Trạng thái */}
         <select
             value={filterStatus}
@@ -173,21 +172,6 @@ const handleComplete = async (id: number) => {
             <option value="Hoàn Thành">Hoàn Thành</option>
             <option value="Đã hủy">Đã hủy</option>
         </select>
-
-        <select
-            value={filterStatus}
-            onChange={(e) => {
-            setFilterStatus(e.target.value);
-            setCurrentPage(1);
-            }}
-        >
-            <option value="all">Tất cả</option>
-            <option value="Chờ Xác Nhận">Chờ Xác Nhận</option>
-            <option value="Đang Sửa">Đang Sửa</option>
-            <option value="Hoàn Thành">Hoàn Thành</option>
-            <option value="Đã Hủy">Đã Hủy</option>
-        </select>
-
         <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}

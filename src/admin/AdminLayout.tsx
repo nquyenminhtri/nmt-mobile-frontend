@@ -92,7 +92,19 @@ function AdminLayout() {
         </NavLink>
 
         <NavLink to="/admin/staff" onClick={() => setOpenMenu(false)}>
-          Nhân viên
+          Quản lý nhân viên
+        </NavLink>
+
+        <NavLink to="/admin/product" onClick={() => setOpenMenu(false)}>
+          Quản hàng hóa
+        </NavLink>
+
+        <NavLink to="/admin/import-product " onClick={() => setOpenMenu(false)}>
+          Nhập hàng
+        </NavLink>
+
+        <NavLink to="/admin/revenue-statistics" onClick={() => setOpenMenu(false)}>
+          Thống kê doanh thu
         </NavLink>
 
         <button className="logout-btn" onClick={handleLogout}>
