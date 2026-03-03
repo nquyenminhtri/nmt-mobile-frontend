@@ -9,7 +9,6 @@
 /* lớp mờ tối */
 .about-overlay {
   min-height: 100vh;
-  background: rgba(15, 23, 42, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
