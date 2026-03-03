@@ -112,3 +112,24 @@ img {
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.glass-card {
+  max-width: 700px;
+  margin: auto;
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.8s ease;
+}
+
+.glass-card h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

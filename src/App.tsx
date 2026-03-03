@@ -21,6 +21,8 @@ import ManageBookings from "./admin/ManageBookings";
 import ManageStaff from "./admin/ManageStaff";
 import ProtectedRoute from "./ProtectedRoute";
 
+import PublicLayout from "./layouts/PublicLayout";
+
 function Layout() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
@@ -46,9 +48,30 @@ function Layout() {
 
         {/* CUSTOMER */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/booking" element={<BookingPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/history" element={<HistoryPage />} />
+        <Route
+          path="/booking"
+          element={
+            <PublicLayout>
+              <BookingPage />
+            </PublicLayout>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <PublicLayout>
+              <AboutPage />
+            </PublicLayout>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <PublicLayout>
+              <HistoryPage />
+            </PublicLayout>
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
 
