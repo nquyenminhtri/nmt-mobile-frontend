@@ -82,9 +82,7 @@ useEffect(() => {
     alert("OTP không đúng");
   }
 };
- const handleSubmit = async (
-  e: React.FormEvent<HTMLFormElement>
-) => {
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
 
   if (!isVerified) {
@@ -99,6 +97,22 @@ useEffect(() => {
     );
 
     alert("Đặt lịch thành công!");
+
+    // 🔥 RESET TOÀN BỘ TRẠNG THÁI
+    setIsVerified(false);
+    setShowOtpInput(false);
+    setOtp("");
+    setCountdown(0);
+
+    setFormData({
+      customer_name: "",
+      phone_number: "",
+      email: "",
+      device_model: "",
+      repair_issue: "",
+      appointment_date: getCurrentDateTime(),
+    });
+
   } catch (error) {
     alert("Lỗi khi đặt lịch!");
   }
