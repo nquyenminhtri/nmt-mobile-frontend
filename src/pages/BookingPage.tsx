@@ -285,7 +285,18 @@ onChange={(e)=>setSelectedType(e.target.value)}
 <input
 value={deviceQuery}
 placeholder="Nhập dòng máy..."
-onChange={(e)=>handleDeviceSearch(e.target.value)}
+onChange={(e)=>{
+  const value = e.target.value
+
+  setDeviceQuery(value)
+
+  setFormData(prev=>({
+    ...prev,
+    device_model:value
+  }))
+
+  handleDeviceSearch(value)
+}}
 required
 />
 
