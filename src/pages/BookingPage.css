@@ -70,10 +70,20 @@
 .submit-btn:hover {
   background-color: #4f46e5;
 }
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  margin-bottom: 8px;
+.suggestions{
+border:1px solid #ddd;
+background:white;
+max-height:200px;
+overflow:auto;
+border-radius:6px;
+margin-top:4px;
+}
+
+.suggestion-item{
+padding:8px;
+cursor:pointer;
+}
+
+.suggestion-item:hover{
+background:#f1f5f9;
 }

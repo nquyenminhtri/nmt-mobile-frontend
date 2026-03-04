@@ -25,9 +25,13 @@ function BookingPage() {
   const [isVerified, setIsVerified] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [deviceTypes, setDeviceTypes] = useState<any[]>([]);
+  
   const [devices, setDevices] = useState<any[]>([]);
   const [isCustomDevice, setIsCustomDevice] = useState(false);
+  const [deviceTypes, setDeviceTypes] = useState<any[]>([]);
+  const [selectedType, setSelectedType] = useState("");
+  const [deviceQuery, setDeviceQuery] = useState("");
+  const [suggestions, setSuggestions] = useState<any[]>([]);
   const handleSendOTP = async () => {
   if (!formData.email) {
     alert("Vui lòng nhập email trước");
@@ -52,15 +56,36 @@ function BookingPage() {
   }
 };
   useEffect(() => {
-    const fetchDeviceTypes = async () => {
-      const res = await axios.get(
-        "https://nmt-mobile-backend.onrender.com/api/device-types"
-      );
-      setDeviceTypes(res.data);
-    };
+  const fetchTypes = async () => {
+    const res = await axios.get(
+      "https://nmt-mobile-backend.onrender.com/api/device-types"
+    );
 
-    fetchDeviceTypes();
-  }, []);
+    setDeviceTypes(res.data);
+  };
+
+  fetchTypes();
+}, []);
+const handleDeviceSearch = async (value: string) => {
+  setDeviceQuery(value);
+
+  if (value.length < 2) {
+    setSuggestions([]);
+    return;
+  }
+
+  const res = await axios.get(
+    `https://nmt-mobile-backend.onrender.com/api/devices/search`,
+    {
+      params: {
+        q: value,
+        typeId: selectedType,
+      },
+    }
+  );
+
+  setSuggestions(res.data);
+};
 
   useEffect(() => {
     const fetchDevices = async () => {
@@ -254,63 +279,60 @@ const isValidEmail = (email: string) => {
       )}
           </div>
           <div className="form-group">
-          <label>Loại thiết bị</label>
+<label>Loại thiết bị</label>
 
-          <select onChange={handleDeviceTypeChange}>
-          <option value="">Chọn loại thiết bị</option>
+<select
+value={selectedType}
+onChange={(e)=>setSelectedType(e.target.value)}
+>
 
-          {deviceTypes.map((type) => (
-          <option key={type.id} value={type.id}>
-          {type.name}
-          </option>
-          ))}
+<option value="">Chọn loại thiết bị</option>
 
-          </select>
-          </div>
+{deviceTypes.map(type=>(
+<option key={type.id} value={type.id}>
+{type.name}
+</option>
+))}
+
+</select>
+</div>
           <div className="form-group">
-            <label>Dòng máy</label>
+<label>Dòng máy</label>
 
-            <select
-            onChange={(e)=>{
-            if(e.target.value==="other"){
-            setIsCustomDevice(true)
-            }else{
-            setIsCustomDevice(false)
+<input
+value={deviceQuery}
+placeholder="Nhập dòng máy..."
+onChange={(e)=>handleDeviceSearch(e.target.value)}
+/>
 
-            setFormData(prev=>({
-            ...prev,
-            device_model:e.target.value
-            }))
-            }
-            }}
-            >
+{suggestions.length > 0 && (
 
-            <option value="">Chọn thiết bị</option>
+<div className="suggestions">
 
-            {devices.map((d)=>(
-            <option key={d.id} value={d.name}>
-            {d.name}
-            </option>
-            ))}
+{suggestions.map(device=>(
+<div
+key={device.id}
+className="suggestion-item"
+onClick={()=>{
+setDeviceQuery(device.name)
 
-            <option value="other">Khác (nhập tay)</option>
+setFormData(prev=>({
+...prev,
+device_model:device.name
+}))
 
-            </select>
+setSuggestions([])
+}}
+>
+{device.name}
+</div>
+))}
 
-            {isCustomDevice && (
+</div>
 
-            <input
-            placeholder="Nhập dòng máy"
-            value={formData.device_model}
-            onChange={(e)=>setFormData(prev=>({
-            ...prev,
-            device_model:e.target.value
-            }))}
-            />
+)}
 
-            )}
-
-            </div>
+</div>
 
           <div className="form-group">
             <label>Mô tả yêu cầu</label>
