@@ -20,6 +20,11 @@ function AboutPage() {
           </div>
 
           <div className="about-item">
+            <span>📞 Email:</span>
+            <p>support@nmtfix.com</p>
+          </div>
+
+          <div className="about-item">
             <span>🛠 Dịch vụ:</span>
             <p>Kinh doanh và sửa chữa các loại điện thoại và thiết bị điện tử</p>
           </div>
