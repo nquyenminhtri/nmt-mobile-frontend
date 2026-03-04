@@ -169,6 +169,19 @@ function AdminLayout() {
             <NavLink to="/admin/supplier">Nhà cung cấp</NavLink>
           </div>
         )}
+        {/* ===== HÀNG HÓA ===== */}
+        <div className="menu-parent" onClick={() => toggleSubMenu("product")}>
+          Quản lý hàng hóa
+          <span className={`arrow ${openSubMenu === "product" ? "rotate" : ""}`}>▼</span>
+        </div>
+
+        {/* ===== THIẾT BỊ ===== */}
+        {openSubMenu === "device" && (
+          <div className="submenu">
+            <NavLink to="/admin/device">Thiết bị</NavLink>
+            <NavLink to="/admin/device/category">Loại thiết bị</NavLink>
+          </div>
+        )}
 
         {/* ===== THỐNG KÊ ===== */}
         <div className="menu-parent" onClick={() => toggleSubMenu("report")}>
