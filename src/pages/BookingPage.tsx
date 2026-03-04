@@ -147,7 +147,10 @@ useEffect(() => {
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
-
+  if (!formData.device_model || formData.device_model.trim() === "") {
+    alert("Vui lòng chọn hoặc nhập dòng máy");
+    return;
+  }
   if (!isValidPhone(formData.phone_number)) {
     alert("Số điện thoại không hợp lệ");
     return;
@@ -162,6 +165,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     alert("Bạn cần xác thực email trước khi đặt lịch");
     return;
   }
+  
 
   try {
     await axios.post(
@@ -303,6 +307,7 @@ onChange={(e)=>setSelectedType(e.target.value)}
 value={deviceQuery}
 placeholder="Nhập dòng máy..."
 onChange={(e)=>handleDeviceSearch(e.target.value)}
+required
 />
 
 {suggestions.length > 0 && (
