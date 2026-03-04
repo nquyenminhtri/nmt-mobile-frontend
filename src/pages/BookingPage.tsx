@@ -25,6 +25,9 @@ function BookingPage() {
   const [isVerified, setIsVerified] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [deviceTypes, setDeviceTypes] = useState<any[]>([]);
+  const [devices, setDevices] = useState<any[]>([]);
+  const [isCustomDevice, setIsCustomDevice] = useState(false);
   const handleSendOTP = async () => {
   if (!formData.email) {
     alert("Vui lòng nhập email trước");
@@ -48,15 +51,49 @@ function BookingPage() {
     setLoading(false);
   }
 };
+  useEffect(() => {
+    const fetchDeviceTypes = async () => {
+      const res = await axios.get(
+        "https://nmt-mobile-backend.onrender.com/api/device-types"
+      );
+      setDeviceTypes(res.data);
+    };
+
+    fetchDeviceTypes();
+  }, []);
+
+  useEffect(() => {
+    const fetchDevices = async () => {
+      try {
+        const res = await axios.get(
+          "https://nmt-mobile-backend.onrender.com/api/devices"
+        );
+        setDevices(res.data);
+      } catch (error) {
+        console.error("Không tải được danh sách thiết bị");
+      }
+    };
+
+    fetchDevices();
+  }, []);
+  const handleDeviceTypeChange = async (e:any) => {
+  const typeId = e.target.value;
+
+  const res = await axios.get(
+    `https://nmt-mobile-backend.onrender.com/api/devices/${typeId}`
+  );
+
+  setDevices(res.data);
+};
 useEffect(() => {
-  if (countdown === 0) return;
+    if (countdown === 0) return;
 
-  const timer = setInterval(() => {
-    setCountdown((prev) => prev - 1);
-  }, 1000);
+    const timer = setInterval(() => {
+      setCountdown((prev) => prev - 1);
+    }, 1000);
 
-  return () => clearInterval(timer);
-}, [countdown]);
+    return () => clearInterval(timer);
+  }, [countdown]);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -216,17 +253,64 @@ const isValidEmail = (email: string) => {
         </div>
       )}
           </div>
+          <div className="form-group">
+          <label>Loại thiết bị</label>
 
+          <select onChange={handleDeviceTypeChange}>
+          <option value="">Chọn loại thiết bị</option>
+
+          {deviceTypes.map((type) => (
+          <option key={type.id} value={type.id}>
+          {type.name}
+          </option>
+          ))}
+
+          </select>
+          </div>
           <div className="form-group">
             <label>Dòng máy</label>
+
+            <select
+            onChange={(e)=>{
+            if(e.target.value==="other"){
+            setIsCustomDevice(true)
+            }else{
+            setIsCustomDevice(false)
+
+            setFormData(prev=>({
+            ...prev,
+            device_model:e.target.value
+            }))
+            }
+            }}
+            >
+
+            <option value="">Chọn thiết bị</option>
+
+            {devices.map((d)=>(
+            <option key={d.id} value={d.name}>
+            {d.name}
+            </option>
+            ))}
+
+            <option value="other">Khác (nhập tay)</option>
+
+            </select>
+
+            {isCustomDevice && (
+
             <input
-              name="device_model"
-              value={formData.device_model}
-              placeholder="Ví dụ: iPhone 13"
-              onChange={handleChange}
-              required
+            placeholder="Nhập dòng máy"
+            value={formData.device_model}
+            onChange={(e)=>setFormData(prev=>({
+            ...prev,
+            device_model:e.target.value
+            }))}
             />
-          </div>
+
+            )}
+
+            </div>
 
           <div className="form-group">
             <label>Mô tả yêu cầu</label>
