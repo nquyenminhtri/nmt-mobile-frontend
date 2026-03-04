@@ -170,9 +170,9 @@ function AdminLayout() {
           </div>
         )}
         {/* ===== THIẾT BỊ ===== */}
-        <div className="menu-parent" onClick={() => toggleSubMenu("product")}>
+        <div className="menu-parent" onClick={() => toggleSubMenu("device")}>
           Quản lý thiết bị
-          <span className={`arrow ${openSubMenu === "product" ? "rotate" : ""}`}>▼</span>
+          <span className={`arrow ${openSubMenu === "device" ? "rotate" : ""}`}>▼</span>
         </div>
 
         {openSubMenu === "device" && (
