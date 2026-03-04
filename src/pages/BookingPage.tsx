@@ -26,8 +26,8 @@ function BookingPage() {
   const [countdown, setCountdown] = useState(0);
   const [loading, setLoading] = useState(false);
   
-  const [devices, setDevices] = useState<any[]>([]);
-  const [isCustomDevice, setIsCustomDevice] = useState(false);
+  
+  
   const [deviceTypes, setDeviceTypes] = useState<any[]>([]);
   const [selectedType, setSelectedType] = useState("");
   const [deviceQuery, setDeviceQuery] = useState("");
@@ -69,6 +69,8 @@ function BookingPage() {
 const handleDeviceSearch = async (value: string) => {
   setDeviceQuery(value);
 
+  if (!selectedType) return;
+
   if (value.length < 2) {
     setSuggestions([]);
     return;
@@ -87,29 +89,6 @@ const handleDeviceSearch = async (value: string) => {
   setSuggestions(res.data);
 };
 
-  useEffect(() => {
-    const fetchDevices = async () => {
-      try {
-        const res = await axios.get(
-          "https://nmt-mobile-backend.onrender.com/api/devices"
-        );
-        setDevices(res.data);
-      } catch (error) {
-        console.error("Không tải được danh sách thiết bị");
-      }
-    };
-
-    fetchDevices();
-  }, []);
-  const handleDeviceTypeChange = async (e:any) => {
-  const typeId = e.target.value;
-
-  const res = await axios.get(
-    `https://nmt-mobile-backend.onrender.com/api/devices/${typeId}`
-  );
-
-  setDevices(res.data);
-};
 useEffect(() => {
     if (countdown === 0) return;
 
