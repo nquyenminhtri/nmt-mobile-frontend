@@ -169,13 +169,12 @@ function AdminLayout() {
             <NavLink to="/admin/supplier">Nhà cung cấp</NavLink>
           </div>
         )}
-        {/* ===== HÀNG HÓA ===== */}
+        {/* ===== THIẾT BỊ ===== */}
         <div className="menu-parent" onClick={() => toggleSubMenu("product")}>
-          Quản lý hàng hóa
+          Quản lý thiết bị
           <span className={`arrow ${openSubMenu === "product" ? "rotate" : ""}`}>▼</span>
         </div>
 
-        {/* ===== THIẾT BỊ ===== */}
         {openSubMenu === "device" && (
           <div className="submenu">
             <NavLink to="/admin/device">Thiết bị</NavLink>
