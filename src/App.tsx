@@ -74,7 +74,7 @@ function Layout() {
             </PublicLayout>
           }
         />
-        <Route path="settings" element={<SettingsPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
 
