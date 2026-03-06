@@ -1,3 +1,4 @@
+import "./SettingsPage.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -65,101 +66,108 @@ function SettingsPage() {
   };
 
   return (
-    <div style={{ padding: 30 }}>
+  <div className="settings-page">
+
+    <div className="settings-card">
 
       <h2>Cấu hình hệ thống</h2>
 
-      <input
-        name="site_name"
-        value={settings.site_name}
-        onChange={handleChange}
-        placeholder="Tên website"
-      />
+      <div className="settings-grid">
 
-      <input
-        name="phone"
-        value={settings.phone}
-        onChange={handleChange}
-        placeholder="Số điện thoại"
-      />
-
-      <input
-        name="email"
-        value={settings.email}
-        onChange={handleChange}
-        placeholder="Email"
-      />
-
-      <input
-        name="address"
-        value={settings.address}
-        onChange={handleChange}
-        placeholder="Địa chỉ"
-      />
-
-      <textarea
-        name="description"
-        value={settings.description}
-        onChange={handleChange}
-        placeholder="Mô tả dịch vụ"
-      />
-
-      <input
-        name="logo_url"
-        value={settings.logo_url}
-        onChange={handleChange}
-        placeholder="Link logo"
-      />
-
-      <input
-        name="banner_url"
-        value={settings.banner_url}
-        onChange={handleChange}
-        placeholder="Link banner"
-      />
-      <input
-        name="working_hours"
-        value={settings.working_hours || ""}
-        onChange={handleChange}
-        placeholder="Giờ làm việc"
+        <input
+          name="site_name"
+          value={settings.site_name}
+          onChange={handleChange}
+          placeholder="Tên website"
         />
 
         <input
-        name="facebook"
-        value={settings.facebook || ""}
-        onChange={handleChange}
-        placeholder="Link Facebook"
+          name="phone"
+          value={settings.phone}
+          onChange={handleChange}
+          placeholder="Số điện thoại"
         />
 
         <input
-        name="zalo"
-        value={settings.zalo || ""}
-        onChange={handleChange}
-        placeholder="Link Zalo"
+          name="email"
+          value={settings.email}
+          onChange={handleChange}
+          placeholder="Email"
         />
 
         <input
-        name="messenger"
-        value={settings.messenger || ""}
-        onChange={handleChange}
-        placeholder="Link Messenger"
+          name="address"
+          value={settings.address}
+          onChange={handleChange}
+          placeholder="Địa chỉ"
         />
 
         <textarea
-        name="google_map"
-        value={settings.google_map || ""}
-        onChange={handleChange}
-        placeholder="Google Map Embed"
+          name="description"
+          value={settings.description}
+          onChange={handleChange}
+          placeholder="Mô tả dịch vụ"
         />
 
-      <br /><br />
+        <input
+          name="logo_url"
+          value={settings.logo_url}
+          onChange={handleChange}
+          placeholder="Link logo"
+        />
 
-      <button onClick={handleSave}>
+        <input
+          name="banner_url"
+          value={settings.banner_url}
+          onChange={handleChange}
+          placeholder="Link banner"
+        />
+
+        <input
+          name="working_hours"
+          value={settings.working_hours || ""}
+          onChange={handleChange}
+          placeholder="Giờ làm việc"
+        />
+
+        <input
+          name="facebook"
+          value={settings.facebook || ""}
+          onChange={handleChange}
+          placeholder="Link Facebook"
+        />
+
+        <input
+          name="zalo"
+          value={settings.zalo || ""}
+          onChange={handleChange}
+          placeholder="Link Zalo"
+        />
+
+        <input
+          name="messenger"
+          value={settings.messenger || ""}
+          onChange={handleChange}
+          placeholder="Link Messenger"
+        />
+
+        <textarea
+          name="google_map"
+          value={settings.google_map || ""}
+          onChange={handleChange}
+          placeholder="Google Map Embed"
+        />
+
+      </div>
+
+      <button className="save-button" onClick={handleSave}>
         Lưu cấu hình
       </button>
 
     </div>
-  );
+
+  </div>
+);
 }
 
 export default SettingsPage;
