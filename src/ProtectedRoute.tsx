@@ -13,8 +13,8 @@ function ProtectedRoute({ children }: Props) {
     return <Navigate to="/login" replace />;
   }
 
-  // Nếu không phải manager
-  if (role !== "manager") {
+  // Nếu không phải admin
+  if (role !== "admin") {
     return <Navigate to="/" replace />;
   }
 
