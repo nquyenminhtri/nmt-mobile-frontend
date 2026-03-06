@@ -45,6 +45,7 @@ function Footer() {
           <h4>Liên hệ</h4>
           <p>📍 {settings.address}</p>
           <p>📞 {settings.phone}</p>
+          <p>📧 {settings.email}</p>
           <p>🕒 {settings.working_hours}</p>
         </div>
 
