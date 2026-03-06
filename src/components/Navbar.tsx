@@ -1,18 +1,45 @@
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeMenu = () => setIsOpen(false);
 
+  const [settings, setSettings] = useState<any>({
+    site_name: "NMT Fix"
+  });
+  useEffect(() => {
+
+    const fetchSettings = async () => {
+
+      try {
+
+        const res = await axios.get(
+          "https://nmt-mobile-backend.onrender.com/api/settings"
+        );
+
+        setSettings(res.data);
+
+      } catch (err) {
+        console.error(err);
+      }
+
+    };
+
+    fetchSettings();
+
+  }, []);
+
   return (
     <>
       <nav className="navbar">
         <div className="nav-container">
 
-          <h2 className="logo">NMT Fix</h2>
+          <h2 className="logo">{settings.site_name}</h2>
 
           {/* Desktop Menu */}
           <div className="menu-desktop">

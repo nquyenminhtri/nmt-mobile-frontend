@@ -21,6 +21,8 @@ import ManageBookings from "./admin/ManageBookings";
 import ManageStaff from "./admin/ManageStaff";
 import ProtectedRoute from "./ProtectedRoute";
 
+import SettingsPage from "./admin/SettingsPage";
+
 import PublicLayout from "./layouts/PublicLayout";
 
 function Layout() {
@@ -72,6 +74,7 @@ function Layout() {
             </PublicLayout>
           }
         />
+        <Route path="settings" element={<SettingsPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
 
