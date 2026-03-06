@@ -25,10 +25,9 @@ function AboutPage() {
           <div className="about-item">
             <span>📍 Địa chỉ:</span>
             <p>{settings.address}</p>
+            <div dangerouslySetInnerHTML={{ __html: settings.google_map }}/>
           </div>
-          <div><p><div
-  dangerouslySetInnerHTML={{ __html: settings.google_map }}
-/></p></div>
+          
 
           <div className="about-item">
             <span>📞 SĐT:</span>
