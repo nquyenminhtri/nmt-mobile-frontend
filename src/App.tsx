@@ -46,6 +46,7 @@ function Layout() {
           <Route index element={<Dashboard />} />
           <Route path="bookings" element={<ManageBookings />} />
           <Route path="staff" element={<ManageStaff />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
 
         {/* CUSTOMER */}
@@ -74,7 +75,6 @@ function Layout() {
             </PublicLayout>
           }
         />
-        <Route path="/settings" element={<SettingsPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
 
