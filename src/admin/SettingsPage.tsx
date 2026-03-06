@@ -117,6 +117,40 @@ function SettingsPage() {
         onChange={handleChange}
         placeholder="Link banner"
       />
+      <input
+        name="working_hours"
+        value={settings.working_hours || ""}
+        onChange={handleChange}
+        placeholder="Giờ làm việc"
+        />
+
+        <input
+        name="facebook"
+        value={settings.facebook || ""}
+        onChange={handleChange}
+        placeholder="Link Facebook"
+        />
+
+        <input
+        name="zalo"
+        value={settings.zalo || ""}
+        onChange={handleChange}
+        placeholder="Link Zalo"
+        />
+
+        <input
+        name="messenger"
+        value={settings.messenger || ""}
+        onChange={handleChange}
+        placeholder="Link Messenger"
+        />
+
+        <textarea
+        name="google_map"
+        value={settings.google_map || ""}
+        onChange={handleChange}
+        placeholder="Google Map Embed"
+        />
 
       <br /><br />
 
