@@ -264,7 +264,7 @@ const isValidEmail = (email: string) => {
           <div className="form-group">
 <label>Loại thiết bị</label>
 
-<select
+<select className="select-t"
 value={selectedType}
 onChange={(e)=>setSelectedType(e.target.value)}
 >
