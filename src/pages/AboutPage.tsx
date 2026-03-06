@@ -27,6 +27,9 @@ function AboutPage() {
             <p>{settings.address}</p>
             <div dangerouslySetInnerHTML={{ __html: settings.google_map }}/>
           </div>
+          <div className="about-item">
+            <div dangerouslySetInnerHTML={{ __html: settings.google_map }}/>
+          </div>
           
 
           <div className="about-item">
