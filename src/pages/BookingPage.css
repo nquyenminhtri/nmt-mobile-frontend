@@ -91,7 +91,8 @@ background:#f1f5f9;
   margin-bottom: 10px;
 }
 .select-t{
-  height: 50px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  height: 40px;
+    margin-top: 1px;
+    border-radius: 8px;
+    margin-bottom: 0px;
 }
