@@ -117,7 +117,9 @@ setForm({...form,[e.target.name]:e.target.value});
 
 
 
-const saveUser = async()=>{
+const saveUser = async () => {
+
+try {
 
 if(editingUser){
 
@@ -138,11 +140,19 @@ form,
 }
 
 setShowModal(false);
-
 fetchUsers();
 
-};
+} catch(err: any){
 
+if(err.response){
+alert(err.response.data.message);
+}else{
+alert("Lỗi server");
+}
+
+}
+
+};
 
 
 const filteredUsers = users.filter((u)=>
