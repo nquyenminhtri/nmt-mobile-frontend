@@ -1,86 +1,71 @@
-/* ===== WRAPPER ===== */
-.manage-wrapper {
-  width:90%;
-  display: flex;
-  justify-content: center;
-  padding: 30px 20px;
+.top-bar{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
 }
 
-.manage-container {
-  width: 100%;
-  max-width: 1200px;
+.top-bar input{
+padding:8px;
+width:220px;
+border:1px solid #ccc;
+border-radius:5px;
 }
 
-/* ===== TITLE ===== */
-.page-title {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 20px;
+.add-btn{
+background:#007bff;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:5px;
+cursor:pointer;
 }
 
-/* ===== TABLE WRAPPER ===== */
-.table-wrapper {
-  background: #fff;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+.edit-btn{
+background:#ffc107;
+border:none;
+padding:5px 10px;
+margin-right:5px;
 }
 
-/* ===== TABLE ===== */
-table {
-  width: 100%;
-  border-collapse: collapse;
+.delete-btn{
+background:#dc3545;
+color:white;
+border:none;
+padding:5px 10px;
+margin-right:5px;
 }
 
-thead {
-  background: #1e293b;
-  color: #fff;
+.pass-btn{
+background:#17a2b8;
+color:white;
+border:none;
+padding:5px 10px;
 }
 
-th {
-  padding: 14px;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: left;
+.modal{
+position:fixed;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:rgba(0,0,0,0.4);
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
-td {
-  padding: 14px;
-  font-size: 14px;
-  border-bottom: 1px solid #eee;
+.modal-content{
+background:white;
+padding:25px;
+width:350px;
+border-radius:8px;
+display:flex;
+flex-direction:column;
+gap:10px;
 }
 
-tbody tr:hover {
-  background: #f8fafc;
-}
-
-/* ===== ROLE BADGE ===== */
-.role-admin {
-  background: #ef4444;
-  color: white;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-
-.role-staff {
-  background: #2563eb;
-  color: white;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  table {
-    display: block;
-    overflow-x: auto;
-  }
-
-  th,
-  td {
-    padding: 10px;
-    font-size: 12px;
-  }
+.modal-buttons{
+display:flex;
+justify-content:space-between;
+margin-top:10px;
 }
