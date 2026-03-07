@@ -15,7 +15,7 @@ function ManageBookings() {
   const [sortOrder, setSortOrder] = useState("desc"); // desc = mới nhất
 
   const [parts,setParts] = useState<any[]>([]);
-  const [selectedPart,setSelectedPart] = useState<{[key:number]:string}>({});
+  const [selectedParts,setSelectedParts] = useState<{[key:number]:number[]}>({});
   const fetchBookings = async () => {
   const token = localStorage.getItem("token");
 
@@ -96,9 +96,9 @@ return;
 
 try{
 
-const partId = selectedPart[id];
+const partIds = selectedParts[id] || [];
 
-if(partId){
+for(const partId of partIds){
 await axios.put(
 `https://nmt-mobile-backend.onrender.com/api/parts/use/${partId}`
 );
@@ -240,24 +240,32 @@ const handleComplete = async (id: number) => {
               <td>
 
               <select
-              value=""
-              onChange={(e)=>{
+value=""
+onChange={(e)=>{
 
-              const partId = e.target.value;
+const partId = Number(e.target.value);
+const part = parts.find(p => p.id === partId);
 
-              const part = parts.find(p => p.id == partId);
+if(!part) return;
 
-              if(!part) return;
+// thêm vào danh sách linh kiện
+const currentParts = selectedParts[b.id] || [];
 
-              const currentNote = noteInput[b.id] || "";
+setSelectedParts({
+...selectedParts,
+[b.id]: [...currentParts, partId]
+});
 
-              setNoteInput({
-              ...noteInput,
-              [b.id]: currentNote + "\n" + part.name
-              });
+// thêm vào ghi chú
+const currentNote = noteInput[b.id] || "";
 
-              }}
-              >
+setNoteInput({
+...noteInput,
+[b.id]: currentNote + "\n" + part.name
+});
+
+}}
+>
 
               <option value="">Chọn linh kiện</option>
 
