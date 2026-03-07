@@ -99,9 +99,15 @@ try{
 const partIds = selectedParts[id] || [];
 
 for(const partId of partIds){
-await axios.put(
-`https://nmt-mobile-backend.onrender.com/api/parts/use/${partId}`
+
+await axios.post(
+"https://nmt-mobile-backend.onrender.com/api/repair-parts",
+{
+booking_id: id,
+part_id: partId
+}
 );
+
 }
 
 await axios.put(
