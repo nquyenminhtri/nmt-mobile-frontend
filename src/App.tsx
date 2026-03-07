@@ -23,6 +23,8 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import SettingsPage from "./admin/SettingsPage";
 
+import ImportReceipt from "./admin/ImportReceipt";
+
 import PublicLayout from "./layouts/PublicLayout";
 
 function Layout() {
@@ -46,6 +48,7 @@ function Layout() {
           <Route index element={<Dashboard />} />
           <Route path="bookings" element={<ManageBookings />} />
           <Route path="staff" element={<ManageStaff />} />
+          <Route path="import-product" element={<ImportReceipt />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
 
