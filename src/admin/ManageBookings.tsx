@@ -13,6 +13,24 @@ function ManageBookings() {
   const [endDate, setEndDate] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [sortOrder, setSortOrder] = useState("desc"); // desc = mới nhất
+
+  const [parts,setParts] = useState<any[]>([]);
+  const [selectedPart,setSelectedPart] = useState<{[key:number]:string}>({});
+  const fetchBookings = async () => {
+  const token = localStorage.getItem("token");
+
+  try {
+    const res = await axios.get(
+      "https://nmt-mobile-backend.onrender.com/api/admin/bookings",
+      { headers: { Authorization: token } }
+    );
+
+    setBookings(res.data);
+
+  } catch (err) {
+    console.log(err);
+  }
+};
   const processedBookings = bookings
   // 🔎 Tìm kiếm theo tên hoặc SĐT
   .filter((b) => {
@@ -57,48 +75,53 @@ function ManageBookings() {
 );
 
 useEffect(() => {
-  const token = localStorage.getItem("token");
 
-  axios
-    .get(`https://nmt-mobile-backend.onrender.com/api/admin/bookings`, {
-      headers: { Authorization: token },
-    })
-    .then((res) => {
-      console.log(res.data); // 👈 thêm dòng này
-      setBookings(res.data);
-    })
-    .catch((err) => console.log(err));
+axios.get("https://nmt-mobile-backend.onrender.com/api/parts")
+.then(res=>{
+setParts(res.data);
+});
+
+fetchBookings();
+
 }, []);
-const handleQuote = async (id: number) => {
-  const price = priceInput[id];
 
-  // ❗ Bắt buộc nhập giá
-  if (!price || Number(price) <= 0) {
-    alert("Vui lòng nhập giá sửa chữa hợp lệ");
-    return;
-  }
+const handleQuote = async (id:number)=>{
 
-  try {
-    await axios.put(
-      `https://nmt-mobile-backend.onrender.com/api/bookings/${id}/quote`,
-      {
-        repair_price: price,
-        admin_note: noteInput[id],
-      }
-    );
+const price = priceInput[id];
 
-    alert("Cập nhật báo giá thành công");
+if (!price || Number(price) <= 0) {
+alert("Vui lòng nhập giá sửa chữa hợp lệ");
+return;
+}
 
-    setBookings((prev) =>
-      prev.map((b) =>
-        b.id === id
-          ? { ...b, repair_price: price, status: "Đang Sửa" }
-          : b
-      )
-    );
-  } catch (error) {
-    alert("Lỗi cập nhật báo giá");
-  }
+try{
+
+const partId = selectedPart[id];
+
+if(partId){
+await axios.put(
+`https://nmt-mobile-backend.onrender.com/api/parts/use/${partId}`
+);
+}
+
+await axios.put(
+`https://nmt-mobile-backend.onrender.com/api/bookings/${id}/quote`,
+{
+repair_price: price,
+admin_note: noteInput[id],
+}
+);
+
+alert("Cập nhật báo giá thành công");
+
+fetchBookings();
+
+}catch(err){
+
+alert("Lỗi cập nhật báo giá");
+
+}
+
 };
 const handleComplete = async (id: number) => {
   const confirmDone = window.confirm("Xác nhận đã sửa xong?");
@@ -191,6 +214,7 @@ const handleComplete = async (id: number) => {
             <th>Giá sửa</th>
             <th>Ngày đặt</th>
             <th>Trạng thái</th>
+            <th>Linh kiện</th>
             <th>Ghi chú của thợ</th>
           </tr>
         </thead>
@@ -203,6 +227,7 @@ const handleComplete = async (id: number) => {
               <td>{b.phone_number}</td>
               <td>{b.device_model}</td>
               <td>{b.repair_issue}</td>
+              
               <td>{new Intl.NumberFormat('vi-VN', {
     style: 'currency',
     currency: 'VND'
@@ -212,6 +237,42 @@ const handleComplete = async (id: number) => {
   .toLocaleDateString("vi-VN")
   .replace(/\//g, "-")}</td>
               <td>{b.status}</td>
+              <td>
+
+              <select
+              value={selectedPart[b.id] || ""}
+              onChange={(e)=>{
+
+              const partId = e.target.value;
+
+              const part = parts.find(p=>p.id == partId);
+
+              setSelectedPart({
+              ...selectedPart,
+              [b.id]: partId
+              });
+
+              if(part){
+              setNoteInput({
+              ...noteInput,
+              [b.id]: (noteInput[b.id] || "") + " " + part.name
+              });
+              }
+
+              }}
+              >
+
+              <option value="">Chọn linh kiện</option>
+
+              {parts.map(p=>(
+              <option key={p.id} value={p.id}>
+              {p.name} (còn {p.quantity})
+              </option>
+              ))}
+
+              </select>
+
+              </td>
               <td>{b.admin_note}</td>
               <td>
                 {(b.status === "Chờ Xác Nhận") && (
