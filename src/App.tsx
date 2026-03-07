@@ -24,6 +24,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import SettingsPage from "./admin/SettingsPage";
 
 import ImportReceipt from "./admin/ImportReceipt";
+import StockAuditPage from "./admin/StockAuditPage";
 
 import PublicLayout from "./layouts/PublicLayout";
 
@@ -49,6 +50,7 @@ function Layout() {
           <Route path="bookings" element={<ManageBookings />} />
           <Route path="staff" element={<ManageStaff />} />
           <Route path="import-product" element={<ImportReceipt />} />
+          <Route path="stock-audit" element={<StockAuditPage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
 
