@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./StockAuditPage.css";
 
 function StockAuditPage(){
 
@@ -26,11 +27,11 @@ alert("Kiểm kê xong");
 
 return(
 
-<div>
+<div className="audit-wrapper">
 
-<h2>Kiểm kê kho</h2>
+<h2 className="audit-title">Kiểm kê kho</h2>
 
-<table>
+<table className="audit-table">
 
 <thead>
 <tr>
@@ -59,6 +60,7 @@ return(
 <td>
 
 <input
+className="audit-input"
 type="number"
 onChange={(e)=>setActual({
 ...actual,
@@ -72,12 +74,16 @@ onChange={(e)=>setActual({
 {diff}
 </td>
 
-<td>
-
-<button onClick={()=>submitAudit(p.id)}>
-Lưu
-</button>
-
+<td
+className={
+diff > 0
+? "diff-positive"
+: diff < 0
+? "diff-negative"
+: ""
+}
+>
+{diff}
 </td>
 
 </tr>
