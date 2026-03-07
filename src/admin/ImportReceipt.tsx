@@ -21,6 +21,9 @@ const [items,setItems] = useState<ImportItem[]>([
 ]);
 
 const addRow = ()=>{
+    setSupplier("");
+setNote("");
+
 setItems(prev=>[
 ...prev,
 {part_id:"",quantity:"",price:""}
@@ -54,12 +57,28 @@ setItems(updated);
 
 const handleSubmit = async()=>{
 
+const cleanItems = items
+.filter(i => i.part_id && i.quantity && i.price)
+.map(i => ({
+part_id: Number(i.part_id),
+quantity: Number(i.quantity),
+price: Number(i.price)
+}));
+if(!supplier){
+alert("Nhập nhà cung cấp");
+return;
+}
+
+if(cleanItems.length === 0){
+alert("Thêm ít nhất 1 linh kiện");
+return;
+}
 await axios.post(
 "https://nmt-mobile-backend.onrender.com/api/import-receipts",
 {
 supplier,
 note,
-items
+items: cleanItems
 }
 );
 
