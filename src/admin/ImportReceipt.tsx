@@ -194,22 +194,10 @@ onChange={(e)=>handleChange(index,"quantity",e.target.value)}
 <td>
 
 <input
-type="text"
-placeholder="Tìm linh kiện..."
-value={searchParts[index] || ""}
-onChange={(e)=>{
-
-setSearchParts({
-...searchParts,
-[index]: e.target.value
-});
-
-setShowDropdown({
-...showDropdown,
-[index]: true
-});
-
-}}
+type="number"
+placeholder="Nhập giá"
+value={item.price}
+onChange={(e)=>handleChange(index,"price",e.target.value)}
 />
 
 </td>
