@@ -3,14 +3,29 @@ import axios from "axios";
 import "./ImportReceipt.css";
 
 function ImportReceipt(){
+
+type ImportItem = {
+part_id: number | "";
+quantity: number | "";
+price: number | "";
+};
+
 const [searchParts,setSearchParts] = useState<{[key:number]:string}>({});
+const [showDropdown,setShowDropdown] = useState<{[key:number]:boolean}>({});
 const [parts,setParts] = useState<any[]>([]);
 const [supplier,setSupplier] = useState("");
 const [note,setNote] = useState("");
 
-const [items,setItems] = useState<any[]>([
+const [items,setItems] = useState<ImportItem[]>([
 {part_id:"",quantity:"",price:""}
 ]);
+
+const addRow = ()=>{
+setItems(prev=>[
+...prev,
+{part_id:"",quantity:"",price:""}
+]);
+};
 
 useEffect(()=>{
 
@@ -20,14 +35,13 @@ axios.get("https://nmt-mobile-backend.onrender.com/api/parts")
 },[]);
 
 
-const addRow = ()=>{
-
-setItems([...items,{part_id:"",quantity:"",price:""}]);
-
-};
 
 
-const handleChange = (index:number,field:string,value:any)=>{
+const handleChange = (
+index:number,
+field:keyof ImportItem,
+value:any
+)=>{
 
 const updated = [...items];
 
@@ -112,10 +126,15 @@ setSearchParts({
 [index]: e.target.value
 });
 
+setShowDropdown({
+...showDropdown,
+[index]: true
+});
+
 }}
 />
 
-{searchParts[index] && (
+{showDropdown[index] && searchParts[index] && (
 
 <div className="part-dropdown">
 
@@ -138,6 +157,11 @@ handleChange(index,"part_id",p.id);
 setSearchParts({
 ...searchParts,
 [index]: p.name
+});
+
+setShowDropdown({
+...showDropdown,
+[index]: false
 });
 
 }}
@@ -170,9 +194,22 @@ onChange={(e)=>handleChange(index,"quantity",e.target.value)}
 <td>
 
 <input
-type="number"
-value={item.price}
-onChange={(e)=>handleChange(index,"price",e.target.value)}
+type="text"
+placeholder="Tìm linh kiện..."
+value={searchParts[index] || ""}
+onChange={(e)=>{
+
+setSearchParts({
+...searchParts,
+[index]: e.target.value
+});
+
+setShowDropdown({
+...showDropdown,
+[index]: true
+});
+
+}}
 />
 
 </td>
