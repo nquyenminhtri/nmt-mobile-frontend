@@ -19,7 +19,11 @@ const [note,setNote] = useState("");
 const [items,setItems] = useState<ImportItem[]>([
 {part_id:"",quantity:"",price:""}
 ]);
+const totalAmount = items.reduce((sum,item)=>{
 
+return sum + (Number(item.quantity || 0) * Number(item.price || 0));
+
+},0);
 const addRow = ()=>{
     setSupplier("");
 setNote("");
@@ -120,6 +124,7 @@ onChange={(e)=>setNote(e.target.value)}
 <th>Linh kiện</th>
 <th>Số lượng</th>
 <th>Giá</th>
+<th>Thành tiền</th>
 </tr>
 
 </thead>
@@ -220,7 +225,11 @@ onChange={(e)=>handleChange(index,"price",e.target.value)}
 />
 
 </td>
-
+<td>
+{Number(item.quantity || 0) * Number(item.price || 0) > 0
+? (Number(item.quantity) * Number(item.price)).toLocaleString("vi-VN") + " ₫"
+: ""}
+</td>
 </tr>
 
 ))}
@@ -228,6 +237,13 @@ onChange={(e)=>handleChange(index,"price",e.target.value)}
 </tbody>
 
 </table>
+<div className="import-total">
+
+<h3>
+Tổng tiền: {totalAmount.toLocaleString("vi-VN")} ₫
+</h3>
+
+</div>
 
 <div className="import-buttons">
 
