@@ -148,3 +148,28 @@ font-size:20px;
 font-weight:bold;
 color:#2e7d32;
 }
+.receipt-success{
+
+margin-top:20px;
+padding:20px;
+background:#e8f5e9;
+border:1px solid #4caf50;
+border-radius:8px;
+
+}
+
+.receipt-success h3{
+color:#2e7d32;
+margin-bottom:10px;
+}
+
+.receipt-success button{
+
+background:#2e7d32;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:6px;
+cursor:pointer;
+
+}

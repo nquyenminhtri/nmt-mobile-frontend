@@ -15,6 +15,7 @@ const [showDropdown,setShowDropdown] = useState<{[key:number]:boolean}>({});
 const [parts,setParts] = useState<any[]>([]);
 const [supplier,setSupplier] = useState("");
 const [note,setNote] = useState("");
+const [lastReceipt,setLastReceipt] = useState<any>(null);
 
 const [items,setItems] = useState<ImportItem[]>([
 {part_id:"",quantity:"",price:""}
@@ -25,8 +26,6 @@ return sum + (Number(item.quantity || 0) * Number(item.price || 0));
 
 },0);
 const addRow = ()=>{
-    setSupplier("");
-setNote("");
 
 setItems(prev=>[
 ...prev,
@@ -68,6 +67,7 @@ part_id: Number(i.part_id),
 quantity: Number(i.quantity),
 price: Number(i.price)
 }));
+
 if(!supplier){
 alert("Nhập nhà cung cấp");
 return;
@@ -77,7 +77,10 @@ if(cleanItems.length === 0){
 alert("Thêm ít nhất 1 linh kiện");
 return;
 }
-await axios.post(
+
+try{
+
+const res = await axios.post(
 "https://nmt-mobile-backend.onrender.com/api/import-receipts",
 {
 supplier,
@@ -86,7 +89,29 @@ items: cleanItems
 }
 );
 
+setLastReceipt({
+id: res.data.receipt_id,
+total: totalAmount
+});
+
 alert("Tạo phiếu nhập thành công");
+
+// reset form
+setSupplier("");
+setNote("");
+
+setItems([
+{part_id:"",quantity:"",price:""}
+]);
+
+setSearchParts({});
+setShowDropdown({});
+
+}catch(err){
+
+alert("Lỗi tạo phiếu nhập");
+
+}
 
 };
 
@@ -254,6 +279,27 @@ Tổng tiền: {totalAmount.toLocaleString("vi-VN")} ₫
 <button className="submit-btn" onClick={handleSubmit}>
 Tạo phiếu nhập
 </button>
+{lastReceipt && (
+
+<div className="receipt-success">
+
+<h3>
+Phiếu nhập #{lastReceipt.id} đã tạo thành công
+</h3>
+
+<p>
+Tổng tiền: {lastReceipt.total.toLocaleString("vi-VN")} ₫
+</p>
+
+<button
+onClick={()=>window.location.href=`/admin/import-history/${lastReceipt.id}`}
+>
+Xem phiếu nhập
+</button>
+
+</div>
+
+)}
 
 </div>
 </div>
