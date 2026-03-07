@@ -240,24 +240,21 @@ const handleComplete = async (id: number) => {
               <td>
 
               <select
-              value={selectedPart[b.id] || ""}
+              value=""
               onChange={(e)=>{
 
               const partId = e.target.value;
 
-              const part = parts.find(p=>p.id == partId);
+              const part = parts.find(p => p.id == partId);
 
-              setSelectedPart({
-              ...selectedPart,
-              [b.id]: partId
-              });
+              if(!part) return;
 
-              if(part){
+              const currentNote = noteInput[b.id] || "";
+
               setNoteInput({
               ...noteInput,
-              [b.id]: (noteInput[b.id] || "") + " " + part.name
+              [b.id]: currentNote + "\n" + part.name
               });
-              }
 
               }}
               >
