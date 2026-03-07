@@ -1,0 +1,99 @@
+.import-wrapper{
+padding:30px;
+background:#f5f7fb;
+min-height:100vh;
+}
+
+.import-container{
+background:white;
+padding:25px;
+border-radius:8px;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+max-width:900px;
+margin:auto;
+}
+
+.import-title{
+font-size:22px;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.import-form{
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-bottom:20px;
+}
+
+.import-form input,
+.import-form textarea,
+.import-form select{
+padding:8px 10px;
+border:1px solid #ccc;
+border-radius:5px;
+font-size:14px;
+}
+
+.import-form textarea{
+min-height:70px;
+resize:vertical;
+}
+
+.import-table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+.import-table th{
+background:#f0f3f7;
+padding:10px;
+font-size:14px;
+}
+
+.import-table td{
+padding:8px;
+text-align:center;
+border-bottom:1px solid #eee;
+}
+
+.import-table input,
+.import-table select{
+width:100%;
+padding:6px;
+border:1px solid #ccc;
+border-radius:4px;
+}
+
+.import-buttons{
+margin-top:15px;
+display:flex;
+gap:10px;
+}
+
+.add-btn{
+background:#007bff;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.add-btn:hover{
+background:#0064d2;
+}
+
+.submit-btn{
+background:#28a745;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.submit-btn:hover{
+background:#1f8a37;
+}

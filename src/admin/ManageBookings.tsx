@@ -3,6 +3,7 @@ import axios from "axios";
 import "./ManageBookings.css";
 
 function ManageBookings() {
+  const [partSearch,setPartSearch] = useState<{[key:number]:string}>({});
   const [bookings, setBookings] = useState<any[]>([]);
   const [priceInput, setPriceInput] = useState<{ [key: number]: string }>({});
   const [noteInput, setNoteInput] = useState<{ [key: number]: string }>({});
@@ -245,43 +246,76 @@ const handleComplete = async (id: number) => {
               <td>{b.status}</td>
               <td>
 
-              <select
-value=""
+              <div className="part-search-box">
+
+<input
+type="text"
+placeholder="Tìm linh kiện..."
+value={partSearch[b.id] || ""}
 onChange={(e)=>{
 
-const partId = Number(e.target.value);
-const part = parts.find(p => p.id === partId);
+setPartSearch({
+...partSearch,
+[b.id]: e.target.value
+});
 
-if(!part) return;
+}}
+/>
 
-// thêm vào danh sách linh kiện
+{partSearch[b.id] && (
+
+<div className="part-dropdown">
+
+{parts
+.filter(p =>
+p.name.toLowerCase().includes(
+(partSearch[b.id] || "").toLowerCase()
+)
+)
+.slice(0,6)
+.map(p=>(
+
+<div
+key={p.id}
+className="part-item"
+onClick={()=>{
+
+// thêm linh kiện
 const currentParts = selectedParts[b.id] || [];
 
 setSelectedParts({
 ...selectedParts,
-[b.id]: [...currentParts, partId]
+[b.id]: [...currentParts, p.id]
 });
 
-// thêm vào ghi chú
+// thêm ghi chú
 const currentNote = noteInput[b.id] || "";
 
 setNoteInput({
 ...noteInput,
-[b.id]: currentNote + "\n" + part.name
+[b.id]: currentNote + "\n" + p.name
+});
+
+// reset ô tìm
+setPartSearch({
+...partSearch,
+[b.id]: ""
 });
 
 }}
 >
 
-              <option value="">Chọn linh kiện</option>
+{p.name} (còn {p.quantity})
 
-              {parts.map(p=>(
-              <option key={p.id} value={p.id}>
-              {p.name} (còn {p.quantity})
-              </option>
-              ))}
+</div>
 
-              </select>
+))}
+
+</div>
+
+)}
+
+</div>
 
               </td>
               <td>{b.admin_note}</td>

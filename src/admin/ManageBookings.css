@@ -171,3 +171,35 @@ tbody tr:hover {
     overflow-x: auto;
   }
 }
+.part-search-box{
+position:relative;
+width:200px;
+}
+
+.part-search-box input{
+width:100%;
+padding:6px;
+border:1px solid #ccc;
+border-radius:4px;
+}
+
+.part-dropdown{
+position:absolute;
+top:35px;
+left:0;
+right:0;
+background:white;
+border:1px solid #ccc;
+max-height:200px;
+overflow-y:auto;
+z-index:10;
+}
+
+.part-item{
+padding:6px;
+cursor:pointer;
+}
+
+.part-item:hover{
+background:#f2f2f2;
+}
