@@ -150,7 +150,7 @@ function AdminLayout() {
 
         {openSubMenu === "product" && (
           <div className="submenu">
-            <NavLink to="/admin/product">Sản phẩm</NavLink>
+            <NavLink to="/admin/parts">Linh kiện</NavLink>
             <NavLink to="/admin/category">Loại sản phẩm</NavLink>
             <NavLink to="/admin/inventory">Tồn kho</NavLink>
             <NavLink to="/admin/stock-audit">Kiểm kê kho</NavLink>

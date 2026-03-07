@@ -25,6 +25,7 @@ import SettingsPage from "./admin/SettingsPage";
 
 import ImportReceipt from "./admin/ImportReceipt";
 import StockAuditPage from "./admin/StockAuditPage";
+import ManageParts from "./admin/ManageParts";
 
 import PublicLayout from "./layouts/PublicLayout";
 
@@ -49,6 +50,7 @@ function Layout() {
           <Route index element={<Dashboard />} />
           <Route path="bookings" element={<ManageBookings />} />
           <Route path="staff" element={<ManageStaff />} />
+          <Route path="parts" element={<ManageParts />} />
           <Route path="import-product" element={<ImportReceipt />} />
           <Route path="stock-audit" element={<StockAuditPage />} />
           <Route path="settings" element={<SettingsPage />} />
