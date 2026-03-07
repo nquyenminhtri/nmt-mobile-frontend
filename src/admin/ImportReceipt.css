@@ -50,6 +50,7 @@ margin-top:15px;
 background:#f0f3f7;
 padding:10px;
 font-size:14px;
+color: black;
 }
 
 .import-table td{
@@ -96,4 +97,36 @@ cursor:pointer;
 
 .submit-btn:hover{
 background:#1f8a37;
+}
+.part-search{
+position:relative;
+width:220px;
+}
+
+.part-search input{
+width:100%;
+padding:6px;
+border:1px solid #ccc;
+border-radius:4px;
+}
+
+.part-dropdown{
+position:absolute;
+top:36px;
+left:0;
+right:0;
+background:white;
+border:1px solid #ccc;
+max-height:200px;
+overflow-y:auto;
+z-index:10;
+}
+
+.part-item{
+padding:6px;
+cursor:pointer;
+}
+
+.part-item:hover{
+background:#f2f2f2;
 }

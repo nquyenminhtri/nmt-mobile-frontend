@@ -3,7 +3,7 @@ import axios from "axios";
 import "./ImportReceipt.css";
 
 function ImportReceipt(){
-
+const [searchParts,setSearchParts] = useState<{[key:number]:string}>({});
 const [parts,setParts] = useState<any[]>([]);
 const [supplier,setSupplier] = useState("");
 const [note,setNote] = useState("");
@@ -99,20 +99,61 @@ onChange={(e)=>setNote(e.target.value)}
 
 <td>
 
-<select
-value={item.part_id}
-onChange={(e)=>handleChange(index,"part_id",e.target.value)}
+<div className="part-search">
+
+<input
+type="text"
+placeholder="Tìm linh kiện..."
+value={searchParts[index] || ""}
+onChange={(e)=>{
+
+setSearchParts({
+...searchParts,
+[index]: e.target.value
+});
+
+}}
+/>
+
+{searchParts[index] && (
+
+<div className="part-dropdown">
+
+{parts
+.filter(p =>
+p.name.toLowerCase().includes(
+(searchParts[index] || "").toLowerCase()
+)
+)
+.slice(0,6)
+.map(p=>(
+
+<div
+key={p.id}
+className="part-item"
+onClick={()=>{
+
+handleChange(index,"part_id",p.id);
+
+setSearchParts({
+...searchParts,
+[index]: p.name
+});
+
+}}
 >
 
-<option value="">Chọn linh kiện</option>
+{p.name} (còn {p.quantity})
 
-{parts.map(p=>(
-<option key={p.id} value={p.id}>
-{p.name}
-</option>
+</div>
+
 ))}
 
-</select>
+</div>
+
+)}
+
+</div>
 
 </td>
 
