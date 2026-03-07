@@ -9,14 +9,14 @@ const [actual,setActual] = useState<{[key:number]:number}>({});
 
 useEffect(()=>{
 
-axios.get("/api/admin/inventory")
+axios.get("https://nmt-mobile-backend.onrender.com/api/admin/inventory")
 .then(res=>setParts(res.data));
 
 },[]);
 
 const submitAudit = async(partId:number)=>{
 
-await axios.post("/api/admin/stock-audit",{
+await axios.post("https://nmt-mobile-backend.onrender.com/api/admin/stock-audit",{
 part_id: partId,
 actual_quantity: actual[partId]
 });
@@ -70,10 +70,6 @@ onChange={(e)=>setActual({
 
 </td>
 
-<td style={{color: diff !==0 ? "red":"black"}}>
-{diff}
-</td>
-
 <td
 className={
 diff > 0
@@ -84,6 +80,17 @@ diff > 0
 }
 >
 {diff}
+</td>
+
+<td>
+
+<button
+className="audit-btn"
+onClick={()=>submitAudit(p.id)}
+>
+Lưu
+</button>
+
 </td>
 
 </tr>
