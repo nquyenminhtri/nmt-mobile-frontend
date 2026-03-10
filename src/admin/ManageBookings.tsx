@@ -210,7 +210,7 @@ const handleComplete = async (id: number) => {
             <option value="asc">Cũ nhất</option>
         </select>
         </div>
-      <table border={1} cellPadding={10}>
+      <table className="audit-table" border={1} cellPadding={10}>
         <thead>
           <tr>
             <th>ID</th>
@@ -226,7 +226,7 @@ const handleComplete = async (id: number) => {
           </tr>
         </thead>
 
-        <tbody className="audit-table">
+        <tbody >
           {paginatedBookings.map((b) => (
             <tr key={b.id}>
               <td>{b.id}</td>
