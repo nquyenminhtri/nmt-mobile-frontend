@@ -226,7 +226,7 @@ const handleComplete = async (id: number) => {
           </tr>
         </thead>
 
-        <tbody>
+        <tbody className="audit-table">
           {paginatedBookings.map((b) => (
             <tr key={b.id}>
               <td>{b.id}</td>
