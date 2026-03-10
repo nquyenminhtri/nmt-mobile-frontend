@@ -1,0 +1,149 @@
+.parts-wrapper{
+
+padding:30px;
+background:#f5f6fa;
+min-height:100vh;
+
+}
+
+/* title */
+
+.parts-title{
+
+font-size:24px;
+margin-bottom:20px;
+color:#2c3e50;
+
+}
+
+/* form */
+
+.parts-form{
+
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:20px;
+
+}
+
+.parts-input{
+
+padding:8px 10px;
+border:1px solid #ccc;
+border-radius:5px;
+min-width:150px;
+
+}
+
+.parts-input:focus{
+
+outline:none;
+border-color:#2c3e50;
+
+}
+
+/* button add */
+
+.add-btn{
+
+background:#2c3e50;
+color:white;
+border:none;
+padding:8px 16px;
+border-radius:5px;
+cursor:pointer;
+
+}
+
+.add-btn:hover{
+
+background:#1a252f;
+
+}
+
+/* table scroll mobile */
+
+.table-scroll{
+
+overflow-x:auto;
+
+}
+
+/* table */
+
+.parts-table{
+
+width:100%;
+min-width:600px;
+border-collapse:collapse;
+background:white;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+
+}
+
+.parts-table th{
+
+background:#2c3e50;
+color:white;
+padding:10px;
+text-align:center;
+
+}
+
+.parts-table td{
+
+padding:10px;
+border-bottom:1px solid #eee;
+text-align:center;
+
+}
+
+.parts-table tr:hover{
+
+background:#f8f9fa;
+
+}
+
+/* delete button */
+
+.delete-btn{
+
+background:#e74c3c;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:5px;
+cursor:pointer;
+
+}
+
+.delete-btn:hover{
+
+background:#c0392b;
+
+}
+
+/* mobile */
+
+@media(max-width:600px){
+
+.parts-form{
+
+flex-direction:column;
+
+}
+
+.parts-input{
+
+width:100%;
+
+}
+
+.add-btn{
+
+width:100%;
+
+}
+
+}

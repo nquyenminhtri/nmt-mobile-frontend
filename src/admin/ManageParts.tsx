@@ -1,5 +1,6 @@
 import { useEffect,useState } from "react";
 import axios from "axios";
+import "./ManageParts.css";
 
 function ManageParts(){
 
@@ -55,37 +56,41 @@ fetchParts();
 
 return(
 
-<div>
+<div className="parts-wrapper">
 
-<h2>Quản lý linh kiện</h2>
+<h2 className="parts-title">Quản lý linh kiện</h2>
 
-<div>
+<div className="parts-form">
 
 <input
+className="parts-input"
 placeholder="Tên linh kiện"
 value={name}
 onChange={(e)=>setName(e.target.value)}
 />
 
 <input
+className="parts-input"
 placeholder="Giá"
 value={price}
 onChange={(e)=>setPrice(e.target.value)}
 />
 
 <input
+className="parts-input"
 placeholder="Số lượng"
 value={quantity}
 onChange={(e)=>setQuantity(e.target.value)}
 />
 
-<button onClick={addPart}>
+<button className="add-btn" onClick={addPart}>
 Thêm
 </button>
 
 </div>
+<div className="table-scroll">
 
-<table border={1}>
+<table className="parts-table" border={1}>
 
 <thead>
 <tr>
@@ -113,7 +118,10 @@ Thêm
 
 <td>
 
-<button onClick={()=>deletePart(p.id)}>
+<button
+className="delete-btn"
+onClick={()=>deletePart(p.id)}
+>
 Xóa
 </button>
 
@@ -126,7 +134,7 @@ Xóa
 </tbody>
 
 </table>
-
+</div>
 </div>
 
 );
