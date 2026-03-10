@@ -105,18 +105,8 @@ useEffect(()=>{
   return (
     <div className="dashboard-grid">
       <div className="card blue">
-  <h4>👥 Online</h4>
-  <p>{stats.online_users}</p>
-      </div>
-
-      <div className="card green">
-        <h4>📈 Tổng truy cập</h4>
-        <p>{stats.total_visits}</p>
-      </div>
-
-      <div className="card purple">
-        <h4>📅 Hôm nay</h4>
-        <p>{stats.today_visits}</p>
+        <h4>👥 Online</h4>
+        <p>{stats.online_users}</p>
       </div>
 
       <div className="card green">
