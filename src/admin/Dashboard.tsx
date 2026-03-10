@@ -28,26 +28,26 @@ function Dashboard() {
   const [revenueData, setRevenueData] = useState<any[]>([]);
   const [statusData, setStatusData] = useState<any[]>([]);
 
-  const [stats,setStats] = useState<any>({
-  total_visits:0,
-  today_visits:0,
-  online_users:0
-});
-useEffect(()=>{
+//   const [stats,setStats] = useState<any>({
+//   total_visits:0,
+//   today_visits:0,
+//   online_users:0
+// });
+// useEffect(()=>{
 
-  const fetchStats = async () => {
+//   const fetchStats = async () => {
 
-    const res = await axios.get(
-      "https://nmt-mobile-backend.onrender.com/api/admin/stats"
-    );
+//     const res = await axios.get(
+//       "https://nmt-mobile-backend.onrender.com/api/admin/stats"
+//     );
 
-    setStats(res.data);
+//     setStats(res.data);
 
-  };
+//   };
 
-  fetchStats();
+//   fetchStats();
 
-},[]);
+// },[]);
   useEffect(() => {
     const fetchData = async () => {
       try {
