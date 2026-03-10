@@ -210,7 +210,7 @@ const handleComplete = async (id: number) => {
             <option value="asc">Cũ nhất</option>
         </select>
         </div>
-      <table className="audit-table" border={1} cellPadding={10}>
+      <table  border={1} cellPadding={10}>
         <thead>
           <tr>
             <th>ID</th>

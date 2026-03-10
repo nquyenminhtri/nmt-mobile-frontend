@@ -203,9 +203,3 @@ cursor:pointer;
 .part-item:hover{
 background:#f2f2f2;
 }
-.audit-table{
-
-min-width:600px; /* giúp table không bị co lại */
-border-collapse:collapse;
-
-}
