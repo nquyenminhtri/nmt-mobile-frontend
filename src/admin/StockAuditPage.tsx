@@ -31,6 +31,7 @@ return(
 
 <h2 className="audit-title">Kiểm kê kho</h2>
 
+<div className="table-scroll">
 <table className="audit-table">
 
 <thead>
@@ -102,6 +103,7 @@ Lưu
 </tbody>
 
 </table>
+</div>
 
 </div>
 

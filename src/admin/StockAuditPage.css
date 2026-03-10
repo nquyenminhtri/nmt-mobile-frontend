@@ -105,3 +105,29 @@ color:#e74c3c;
 font-weight:bold;
 
 }
+.table-scroll{
+
+width:100%;
+overflow-x:auto;
+
+}
+
+.audit-table{
+
+min-width:600px; /* giúp table không bị co lại */
+border-collapse:collapse;
+
+}
+.table-scroll{
+
+width:100%;
+overflow-x:auto;
+
+}
+
+.audit-table{
+
+min-width:600px; /* giúp table không bị co lại */
+border-collapse:collapse;
+
+}
