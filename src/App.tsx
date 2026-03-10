@@ -4,6 +4,8 @@ import {
   Route,
   useLocation
 } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -32,7 +34,25 @@ import PublicLayout from "./layouts/PublicLayout";
 function Layout() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
+ useEffect(() => {
 
+  axios.post(
+    "https://nmt-mobile-backend.onrender.com/api/visit"
+  );
+
+  const handleLeave = () => {
+    axios.post(
+      "https://nmt-mobile-backend.onrender.com/api/leave"
+    );
+  };
+
+  window.addEventListener("beforeunload", handleLeave);
+
+  return () => {
+    window.removeEventListener("beforeunload", handleLeave);
+  };
+
+}, []);
   return (
     <>
       {!isAdmin && <Navbar />}

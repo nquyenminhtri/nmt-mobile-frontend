@@ -28,6 +28,26 @@ function Dashboard() {
   const [revenueData, setRevenueData] = useState<any[]>([]);
   const [statusData, setStatusData] = useState<any[]>([]);
 
+  const [stats,setStats] = useState<any>({
+  total_visits:0,
+  today_visits:0,
+  online_users:0
+});
+useEffect(()=>{
+
+  const fetchStats = async () => {
+
+    const res = await axios.get(
+      "https://nmt-mobile-backend.onrender.com/api/admin/stats"
+    );
+
+    setStats(res.data);
+
+  };
+
+  fetchStats();
+
+},[]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -84,6 +104,30 @@ function Dashboard() {
 
   return (
     <div className="dashboard-grid">
+      <div className="card blue">
+  <h4>👥 Online</h4>
+  <p>{stats.online_users}</p>
+      </div>
+
+      <div className="card green">
+        <h4>📈 Tổng truy cập</h4>
+        <p>{stats.total_visits}</p>
+      </div>
+
+      <div className="card purple">
+        <h4>📅 Hôm nay</h4>
+        <p>{stats.today_visits}</p>
+      </div>
+
+      <div className="card green">
+        <h4>📈 Tổng truy cập</h4>
+        <p>{stats.total_visits}</p>
+      </div>
+
+      <div className="card purple">
+        <h4>📅 Hôm nay</h4>
+        <p>{stats.today_visits}</p>
+      </div>
       <div className="card blue">
         <h4>Tổng đơn</h4>
         <p>{dashboard?.total ?? 0}</p>
